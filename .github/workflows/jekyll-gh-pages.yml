@@ -33,9 +33,9 @@ jobs:
         with:
           ruby-version: 2.7
       - name: Install Bundler
-        run: gem install bundler
+        run: gem install bundler --user-install
       - name: Install dependencies
-        run: bundle install
+        run: bundle install --path vendor/bundle
       - name: Build with Jekyll
         run: bundle exec jekyll build
       - name: Build with Jekyll

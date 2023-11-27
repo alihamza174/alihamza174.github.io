@@ -1,0 +1,55 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>3. Identifying bottlenecks, stress tests, and resilience testing</title>
+  </head>
+  <body>
+    <nav>
+  <a href="/">Home</a>
+  <a href="/docs">Docs</a>
+</nav>
+    <h1 id="task-03---identifying-bottlenecks-stress-tests-and-resilience-testing-30-minutes">Task 03 - Identifying bottlenecks, stress tests, and resilience testing (30 minutes)</h1>
+
+<h2 id="introduction">Introduction</h2>
+
+<p>At this point, you should have load tests running against your environment. Although our load tests are automated now, we need to make sure we review the tests to see if we can identify any bottlenecks or changes in behavior.  From there, we can share our findings and work towards remediating the issues.  If your application is hosted in Azure, you can leverage the synergy Azure Load Testing has with the other Azure services.</p>
+
+<p>In addition to load testing, we may also wish to perform stress testing. Stress testing focuses on overloading the system until it breaks. A stress test determines how stable a system is and its ability to withstand extreme increases in load. It does this by testing the maximum number of requests that a system can handle at a given time before performance is compromised and fails. Find this maximum to understand what kind of load the current environment can adequately support.</p>
+
+<p>We will also want to perform a third type of testing, called resilience testing. The resiliency of an application isn’t solely decided by how quickly it can scale up or out, but also how it handles failures. This means planning for a failure of every application component: a single container, cluster, VM, database, or region.</p>
+
+<h2 id="description">Description</h2>
+
+<p>The team at Munson’s Pickles and Preserves is excited about the possibilities of automated load testing of their applications and they are interested in learning more about the types of testing we can perform in Azure to gauge application quality and resiliency.</p>
+
+<ol>
+  <li>Review your load test results to see where there are potential bottlenecks in your application.  If needed, perform additional tests with different settings to help identity any bottlenecks.  Once you have identified one or more bottlenecks, see how you can resolve the bottleneck and show the new performance profile after your fixes are in place.</li>
+  <li>Create a new set of test scripts or parameters and run a stress test.</li>
+  <li>Identify the bottlenecks and breaking points of the application under stress.</li>
+  <li>Decide whether you should add stress test remediation steps as GitHub Issues.</li>
+  <li>Use Azure Chaos Studio to design a Chaos experiment. Note that you will need to register the <code class="language-plaintext highlighter-rouge">Microsoft.Chaos</code> provider for your subscription if you have not already. You can register this in the <strong>Resource providers</strong> menu item under the <strong>Settings</strong> menu for the subscription.</li>
+  <li>After ensuring that you have a recent baseline test, run a load test.</li>
+  <li>During the load test, start the Chaos experiment and note the failures. Note that there is, at present, no GitHub Action for Chaos experiments, so you will need to run this manually, outside of a GitHub Actions workflow.</li>
+  <li>Prioritize the failure points arising from the Chaos experiment and build an action plan to remediate.</li>
+</ol>
+
+<h2 id="success-criteria">Success Criteria</h2>
+
+<ul>
+  <li>Demonstrate how you found any bottlenecks in the Team Messaging System application.</li>
+  <li>Verify that your bottleneck has been resolved.</li>
+  <li>Show a side-by-side comparison of the load tests results and the stress test results.</li>
+  <li>Show, based on these tests, where the bottlenecks and breakpoints are in the application.</li>
+  <li>Show the failure points that occurred during your resilience testing, as well as your remediation plan.</li>
+</ul>
+
+<h2 id="learning-resources">Learning Resources</h2>
+
+<p><a href="https://docs.microsoft.com/en-us/azure/load-testing/how-to-appservice-insights">Adding Monitoring to Load Testing</a>
+<a href="https://docs.microsoft.com/en-us/azure/architecture/framework/scalability/performance-test#stress-testing">Learn more about stress testing</a>
+<a href="https://docs.microsoft.com/en-us/azure/chaos-studio/chaos-studio-overview">What is Azure Chaos Studio</a>
+<a href="https://learn.microsoft.com/en-us/azure/chaos-studio/chaos-studio-quickstart-azure-portal">Create and run a chaos experiment using Azure Chaos Studio</a></p>
+
+  </body>
+</html>

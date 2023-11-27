@@ -1,0 +1,28 @@
+<h1 id="task-03---monitoring-with-application-insights-20-minutes">Task 03 - Monitoring with Application Insights (20 minutes)</h1>
+
+<ol>
+  <li>The App Insights Instrumentation key property is defined here under the appServiceApp resource
+<img src="../Media/AppInsightsInstrumentationKey.png" alt="App Insights Instrumentation Key in the .bicep code" /></li>
+  <li>The App Insights resource is deployed here in the .bicep file
+<img src="../Media/AppInsightsNode.png" alt="App Insights Resource node in the .bicep file" /></li>
+  <li>Go to Application Insights and select “Application Dashboard”.
+<img src="../Media/ApplicationDashboard.png" alt="Select Application Dashboard" /></li>
+  <li>Select “Edit” to explore what kinds of changes and updates you can make to the default dashboard
+<img src="../Media/EditDashboard.png" alt="Select Edit dashboard" /></li>
+  <li>After making a few changes, name your new custom dashboard and save it.
+<img src="../Media/NameAndSaveDashboard.png" alt="Name and save your custom dashboard" /></li>
+  <li>Your new custom dashboard is now selected and is the new default dashboard for App Services.
+<img src="../Media/NewCustomDashboard.png" alt="Your new custom dashboard is selected" /></li>
+  <li>Setup a Classic Test for your production site (or any other site)
+<img src="../Media/ClassicAvailabilityTest.png" alt="Setup the classic test" /></li>
+  <li>This can be repeated for Dev and Test as well.</li>
+  <li>After a few minutes you’ll start seeing data coming in.
+ <img src="../Media/AppsAvailable.png" alt="Apps with successful availability test" /></li>
+  <li>To see what happens when an app in unavailable, you can turn of one of your apps.
+<img src="../Media/FailedAppTest.png" alt="Failed App Test" /></li>
+  <li>If you want alerts based on the site availability, select the ellipsis by the test and select “Open rules (Alerts) page”.
+<img src="../Media/OpenAlertsPage.png" alt="Open the availability alerts" /></li>
+  <li>There will be a default alert created for failed applications. You can also select “+ Create” if you want add additional rules.
+<img src="../Media/ApplicationAlerts.png" alt="Application Alerts" /></li>
+  <li>If you want to explore creating additional alerts, feel free. But nothing else needs to be created.</li>
+</ol>

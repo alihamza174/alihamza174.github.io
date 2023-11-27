@@ -1,0 +1,48 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>1. Deploy the necessary prerequisites needed for a Microsoft Dev Box</title>
+  </head>
+  <body>
+    <nav>
+  <a href="/">Home</a>
+  <a href="/docs">Docs</a>
+</nav>
+    <h1 id="task-01---deploy-the-necessary-prerequisites-required-for-a-microsoft-dev-box-20-minutes">Task 01 - Deploy the necessary prerequisites required for a Microsoft Dev Box (20 minutes)</h1>
+
+<ol>
+  <li>Navigate to Azure and create a new Resource Group for the Lab</li>
+  <li>
+    <p>In the search box, find Microsoft Dev Box</p>
+
+    <p><img src="../Media/MicrosoftDevBox.png" alt="Microsoft Dev Box" /></p>
+  </li>
+  <li>Select Dev centers and click to create a new one</li>
+  <li>Use a name like MPPDevCenter for the Dev center name
+<img src="../Media/CreateDevCenter.png" alt="Create Dev center" /></li>
+  <li>Once you’re in your Dev Center, Create a new project
+<img src="../Media/DevCenterProject.png" alt="Create a new project" /></li>
+  <li>Create a project for the Munson’s Pickles and Preserves Team Messaging System application</li>
+  <li><img src="../Media/MPPTeamMessagingProject.png" alt="Create the Team Messaging system Project" />
+    <ol>
+      <li>Leave Dev Box management with the defaults, if you wanted to set a limit on the number of dev boxes a user could create you can do that here.</li>
+    </ol>
+  </li>
+  <li>Go back to the Azure Portal and your Resource Group and create a new Virtual network
+ <img src="../Media/VirtualNetwork.png" alt="Select Virtual network" />
+ <img src="../Media/VirtualNetworkConfig.png" alt="Virtual Network Configuration" />
+ You can keep Security and IP addresses to the defaults and create the network</li>
+  <li>Create a new Network Connection in the resource group
+ <img src="../Media/NetworkConnection.png" alt="Network Connection" /></li>
+  <li>Make sure it’s in your same resource group and the domain join type is set to Azure active directory join. In the network connection details connect it to the network you just created.
+<img src="../Media/VirtualNetworkConfig.png" alt="Network Connection Configuration" /></li>
+  <li>Once the network connection is created, navigate back to your Dev Center and under Networking add the network connection you just created.
+<img src="../Media/DevCenterNetworkConnection.png" alt="Add a network connection to dev center" />
+You can add it before the checks are finished running, they will continue to run once it’s been added.</li>
+</ol>
+
+<p>Now you’re ready to start creating a custom image to deploy your Dev Box.</p>
+
+  </body>
+</html>

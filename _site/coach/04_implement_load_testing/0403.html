@@ -1,0 +1,54 @@
+<h1 id="task-03---identifying-bottlenecks-stress-tests-and-resilience-testing">Task 03 - Identifying bottlenecks, stress tests, and resilience testing</h1>
+
+<ul>
+  <li>The following high-level notes cover step 1.
+    <ul>
+      <li>For a primer on identifying bottlenecks using Azure Load Testing, <a href="https://docs.microsoft.com/en-us/azure/load-testing/tutorial-identify-bottlenecks-azure-portal">this article</a> covers the process.</li>
+      <li>Because there is no database associated with this application, identifying areas of slowdown will require code analysis.</li>
+      <li>Learners should notice that there are two operations which consistently lag behind everything else in terms of performance: initial loading of messages and posting a new message. In both cases, the root cause is a thread sleep loop. After removing these “speed loops,” learners should notice a drastic performance improvement when performing those operations.</li>
+    </ul>
+  </li>
+  <li>The following high-level notes cover steps 2-4. There is also <a href="../Solution/Exercise-04/Task-3/StressTestScript.jmx">a sample JMeter script</a> in the solution directory.</li>
+  <li>The following high-level notes cover steps 5-8.
+    <ul>
+      <li>Chaos Studio does not offer a GitHub Action at this time, so learners will not be able to integrate this into their CI/CD pipelines.</li>
+      <li>Azure Chaos studio only supports a limited number of services, such as VMs, AKS, App Services, Cosmos DB, and networking.  Because our sample app only contains App Services, we will use App Service faults.</li>
+      <li>Prior to creating a chaos experiment, learners will want to scale out the App Service Plan to multiple instances, such as 3.</li>
+      <li>Create Azure Chaos Studio/Experiment
+        <ul>
+          <li>Register Chaos Studio Provider
+            <ul>
+              <li>Go to your subscription</li>
+              <li>On the left-hand side, select “Resource provider”</li>
+              <li>In the list of providers, search for “Microsoft.Chaos”</li>
+              <li>Click on the provider and select “Register”</li>
+            </ul>
+          </li>
+          <li>Go to Azure Chaos Studio</li>
+          <li>Navigate to the <strong>Targets</strong> menu on the left-hand side and then select the App Service you will test. From there, select “Enable Targets” then “Enable service-direct targets” to complete enablement.</li>
+          <li>On the left-hand side menu for Chaos Studio, select the “Experiments” option.</li>
+          <li>Select “+ Create” and then choose “New experiment” from the dropdown.</li>
+          <li>Fill in your subscription, resource group, location, and name for this experiment.  Keep track of the experiment name as a managed user will be created for you.</li>
+          <li>Go to the experiment designer on the next tab.  Change the name of the step or branch if you wish.</li>
+          <li>Select “Add Action” and then “Add Fault” to create a new fault.</li>
+          <li>Select “Stop App Service” as the Fault.  You can choose the duration but the minimum duration is 5 minutes and that should be enough. From the target resources tab, choose the App Service you wish to test and then select “Add” to complete the addition.</li>
+          <li>Save your experiment by selecting “Review + create” and then choosing the “Create” option.</li>
+        </ul>
+      </li>
+      <li>Update App Service Permissions
+        <ul>
+          <li>In the appropriate App Service, select “Access control (IAM)” from the left-hand menu.</li>
+          <li>Select “Add” followed by “Add Role Assignment”</li>
+          <li>Select the Contributor role, then select the “Members” tab. Choose the “+ Select members” link.</li>
+          <li>Search the name of the experiment from the earlier step and then click “Select”.</li>
+          <li>Review and assign the permissions which will grant the role to the experiment.</li>
+        </ul>
+      </li>
+      <li>Run load test + experiment
+        <ul>
+          <li>Run the load test first, then while the load test is running kick off the chaos experiment.  You should notice that the application returns a 403 error and the web app is stopped.</li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+</ul>

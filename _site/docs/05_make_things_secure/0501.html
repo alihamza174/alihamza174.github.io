@@ -1,0 +1,68 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>1. Configure Microsoft Copilot on your Dev Box</title>
+  </head>
+  <body>
+    <nav>
+  <a href="/">Home</a>
+  <a href="/docs">Docs</a>
+</nav>
+    <h1 id="task-01---branching--policies-20-minutes">Task 01 - Branching &amp; Policies (20 minutes)</h1>
+
+<h2 id="introduction">Introduction</h2>
+
+<p>In the previous exercises, we successfully implemented an end-to-end CI/CD pipeline! However, the current workflow will immediately promote every small change directly to production. This isn’t an ideal scenario, especially when Munson’s Pickles and Preserves is making updates to the Team Messaging System after it’s been promoted to production or is even in the testing phase. Best practices are to avoid working directly against the main branch in your repository to avoid conflicts and protect the production environment.</p>
+
+<p>With GitHub, Munson’s Pickles and Preserves can solve these challenges using a practice called branching. Some may refer to this as the <a href="https://guides.github.com/introduction/flow/">GitHub flow</a>. When a developer wants to make a change, add a feature, or fix a bug, the developer begins by creating a new ‘branch’ or copy of the main codebase. Then, the developer makes changes and commits them. A pull request is created to merge these changes back into the main branch. This pull request may or may not involve some testing, discussion and approval. Finally, changes are merged back into the main codebase, and the branch can be deleted.</p>
+
+<h2 id="description">Description</h2>
+
+<p>In this task, you will practice the GitHub flow. Additionally, GitHub offers a feature for explicitly protecting against changes directly to the main branch. These are called branch protection rules, and you will start by implementing one.</p>
+
+<ol>
+  <li>Create a branch protection rule which prevents developers from committing changes to the main branch in the repository.</li>
+  <li>Create a feature branch, make a small change to the code (i.e.,<code class="language-plaintext highlighter-rouge">/Application/src/RazorPagesTestSample/Pages/Index.cshtml</code>), and sync this branch with the GitHub repository.</li>
+  <li>Define a code owner for the <code class="language-plaintext highlighter-rouge">/Application</code> directory. Your branch policy should require a review from the code owner.</li>
+  <li>Create and complete a Pull Request, merging your code change into the protected branch.</li>
+</ol>
+
+<h2 id="success-criteria">Success Criteria</h2>
+
+<ul>
+  <li>You have a branch protection rule which prevents changes from being committed to your main branch.</li>
+  <li>Changes to the application (i.e.,<code class="language-plaintext highlighter-rouge">/Application/src/RazorPagesTestSample/Pages/Index.cshtml</code>) are committed to a feature branch.</li>
+  <li>Before a pull request is completed:
+    <ul>
+      <li>A code owner must approve the changes (<a href="https://docs.github.com/en/free-pro-team@latest/github/creating-cloning-and-archiving-repositories/about-code-owners">hint</a>)</li>
+    </ul>
+  </li>
+  <li>A completed pull request merges with the protected branch and is automatically deployed to the dev environment.</li>
+</ul>
+
+<h2 id="learning-resources">Learning Resources</h2>
+
+<ul>
+  <li><a href="https://docs.github.com/en/github/administering-a-repository/about-protected-branches">General information about protected branches</a></li>
+  <li><a href="https://docs.github.com/en/github/administering-a-repository/configuring-protected-branches">Protected branches configuration specifics here</a>.</li>
+  <li><a href="https://docs.github.com/en/github/collaborating-with-issues-and-pull-requests/about-branches">General information about branches</a></li>
+  <li><a href="https://docs.github.com/en/github/collaborating-with-issues-and-pull-requests/creating-and-deleting-branches-within-your-repository">Branching specifics about creation and deletion here</a>.</li>
+  <li><a href="https://docs.github.com/en/github/collaborating-with-issues-and-pull-requests/about-pull-requests">General information about pull requests</a></li>
+  <li><a href="https://docs.github.com/en/github/collaborating-with-issues-and-pull-requests/creating-a-pull-request">Create pull request specifics</a></li>
+  <li><a href="https://docs.github.com/en/github/collaborating-with-issues-and-pull-requests/reviewing-changes-in-pull-requests">Reviewing pull requests</a>.</li>
+  <li><a href="https://docs.github.com/en/free-pro-team@latest/github/creating-cloning-and-archiving-repositories/about-code-owners">About code owners</a></li>
+  <li><a href="https://docs.github.com/en/free-pro-team@latest/github/administering-a-repository/enabling-required-status-checks">Enabling required status checks</a></li>
+  <li><a href="https://docs.github.com/en/free-pro-team@latest/github/administering-a-repository/about-required-reviews-for-pull-requests">About required reviews for pull requests</a></li>
+</ul>
+
+<h2 id="tips">Tips</h2>
+
+<ul>
+  <li>If your GitHub account was created on the ‘Free’ tier, then in order to create a Branch Protection rule your repository must be public. To change a repository from private to public, visit the ‘Settings’ tab, and scroll to the bottom where you have the option to ‘Change visibility.’</li>
+  <li>If using the git command line interface, you can find a number of sample git commands that are useful for branching <a href="https://gist.github.com/JamesMGreene/cdd0ac49f90c987e45ac">here</a>. (Make sure to focus on the ‘git’ commands, rather than ‘gitflow’.)</li>
+  <li>If using the git command line interface, try adding ‘–help’ after a command to get helpful information about arguments and usage.</li>
+</ul>
+
+  </body>
+</html>

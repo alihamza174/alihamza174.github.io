@@ -1,0 +1,55 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>2. Ensure your code is secure</title>
+  </head>
+  <body>
+    <nav>
+  <a href="/">Home</a>
+  <a href="/docs">Docs</a>
+</nav>
+    <h1 id="task-02---ensure-your-code-is-secure-20-minutes">Task 02 - Ensure your code is secure (20 minutes)</h1>
+
+<h2 id="introduction">Introduction</h2>
+
+<p>Munson’s Pickles and Preserves Teams Messaging System is up and running! They even have a proper Git Flow to protect against unintended changes to the main branch, and are recording application telemetry into App Insights. Before we are truly production ready, though, there is one topic we have to cover–security.</p>
+
+<p>One good DevOps practice is to enable protections against code-level vulnerabilities, and GitHub provides a number of useful features in this area. First, there are Issues, which allow developers or users to open ‘tickets’ indicating bugs to be fixed or potential vulnerabilities. If your organization prefers security flaws to be reported in a location other than GitHub, you have the option to provide a custom Security policy which describes the process for reporting.</p>
+
+<p>In addition to these manual processes, GitHub also provides automated tools for scanning code for common errors. In this task, you will utilize the built in Dependabot which provides alerts if your repository contains libraries, packages, or external dependencies with known vulnerabilities. You will also set up a workflow with CodeQL which can scan your source code for common coding errors or basic security flaws. This will help to ensure that Munson’s Pickles and Preserves contains code without any known vulnerabilities.</p>
+
+<h2 id="description">Description</h2>
+
+<p>In this task, you will improve the security of your repository using some of GitHub’s built-in tools.</p>
+
+<ol>
+  <li>Find the repository’s Security policy. If there is an existing policy, make an edit and merge your change back into the main branch. Otherwise, go ahead and create a policy using the template provided. GitHub Security policies are Markdown documents that indicate the preferred way to report security vulnerabilities for the repository.</li>
+  <li>Enable Dependabot alerts for the repository. Dependabot is an automated tool that creates a pull request when any dependencies in the code base has a known vulnerability.</li>
+  <li>Finally, set up and run a Code scanning workflow for the repository using GitHub’s ‘CodeQL Analysis.’ This workflow can run either on each pull request or on a schedule, and it checks your code for common vulnerabilities or errors.</li>
+</ol>
+
+<h2 id="success-criteria">Success Criteria</h2>
+
+<ul>
+  <li>In GitHub, you should be able to view the ‘closed’ pull request which either created or updated the Security policy (SECURITY.md file).</li>
+  <li>Additionally, you should be able to view a new ‘open’ pull request created by Dependabot requesting an update of a dependency.</li>
+  <li>Finally, you should be able to view the results of the CodeQL Analysis in the Security tab.</li>
+</ul>
+
+<h2 id="learning-resources">Learning Resources</h2>
+
+<ul>
+  <li><a href="https://docs.github.com/en/github/managing-security-vulnerabilities/adding-a-security-policy-to-your-repository">Learn more about adding a security policy to your repository</a>.</li>
+  <li><a href="https://docs.github.com/en/github/managing-security-vulnerabilities/managing-vulnerabilities-in-your-projects-dependencies">Learn more about Dependabot and vulnerable dependencies</a>.</li>
+  <li><a href="https://docs.github.com/en/github/finding-security-vulnerabilities-and-errors-in-your-code">Learn more about automated code scanning and understanding results</a>.</li>
+</ul>
+
+<h2 id="tips">Tips</h2>
+
+<ul>
+  <li>If you are stuck, check out the ‘Security’ tab of your repository on GitHub.</li>
+</ul>
+
+  </body>
+</html>

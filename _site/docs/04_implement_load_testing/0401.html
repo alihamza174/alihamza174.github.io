@@ -1,0 +1,60 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>1. Configure Microsoft Copilot on your Dev Box</title>
+  </head>
+  <body>
+    <nav>
+  <a href="/">Home</a>
+  <a href="/docs">Docs</a>
+</nav>
+    <h1 id="task-01---implement-load-testing-15-minutes">Task 01 - Implement load testing (15 minutes)</h1>
+
+<h2 id="introduction">Introduction</h2>
+
+<p>When some people think of load testing, the first thought that comes to mind is pointing a tool at your site, cranking the load to the max, and seeing what happens.  While that might be exciting at the moment, it’s critical to take a step back and develop a load testing strategy that is tailored to the application. This means breaking down the architecture, internal and external dependencies, high availability design, scaling, and the data tier.  Having a plan not only helps you prepare while you are testing the application, but it also provides context as to why and how you are testing the application for anyone in the future.</p>
+
+<h2 id="description">Description</h2>
+
+<p>The development team at Munson’s Pickles and Preserves would like to understand how to perform proper load testing on a website, using the Team Messaging System as an example.</p>
+
+<p>In this task, you will create a load testing strategy to describe your plan and goals. Below are some examples of topics, but you should also think about whether there are other questions or criteria to consider.</p>
+
+<ul>
+  <li>Define the scope of your testing, including which services you will test.</li>
+  <li>Identify the load characteristics for this scenario.</li>
+  <li>Identify the test failure criteria.</li>
+  <li>Identify how you will monitor your application while performing load testing.</li>
+  <li>Identify potential bottlenecks or limitations in advance.</li>
+  <li>Identify any assumptions or risks in your plan.</li>
+</ul>
+
+<p>Although the Team Messaging System itself does not experience heavy utilization throughout the day, the development team has asked you to consider a similar application with the following usage profile:</p>
+
+<ul>
+  <li>The majority of utilization happens during business hours, which are 8 AM until 5 PM Central time in the United States.</li>
+  <li>During normal business hours, the average daily load is 1000 users per hour and users interact with all system endpoints, not just a subset. For a load test, they would like to ensure that 30 concurrent users are able to access the site and ensure that the overall workload should take no more than 600ms per call on average. Also, no more than 10% of calls should fail under this workload.</li>
+  <li>There are no external APIs or automated systems which add an appreciable amount of workload to the application.</li>
+</ul>
+
+<ol>
+  <li>Create a load testing strategy based on the Team Messaging System application.</li>
+</ol>
+
+<h2 id="success-criteria">Success Criteria</h2>
+
+<ul>
+  <li>Present your comprehensive load testing plan, paying special attention to how the load test will interact with any applications or services.</li>
+  <li>Explain what potential bottlenecks you might encounter during the test, as well as your expected mitigation strategy for each bottleneck.</li>
+  <li>Explain how a service failure or degradation might impact the performance of the application or the load test.</li>
+</ul>
+
+<h2 id="learning-resources">Learning Resources</h2>
+
+<ul>
+  <li><a href="https://www.flood.io/blog/how-to-write-a-test-plan-for-load-testing">How to write a test plan for load testing</a></li>
+</ul>
+
+  </body>
+</html>

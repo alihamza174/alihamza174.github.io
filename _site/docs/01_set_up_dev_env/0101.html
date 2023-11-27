@@ -1,0 +1,59 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>0101</title>
+  </head>
+  <body>
+    <nav>
+  <a href="/">Home</a>
+  <a href="/docs">Docs</a>
+</nav>
+    <h1 id="task-01---deploy-the-necessary-prerequisites-required-for-a-microsoft-dev-box-20-minutes">Task 01 - Deploy the necessary prerequisites required for a Microsoft Dev Box (20 minutes)</h1>
+
+<h2 id="introduction">Introduction</h2>
+
+<p>Before standing up Dev Boxes for the developers at Munson’s Pickles and Preserves to use, there are certain prerequisite tasks that need to be done in order to ensure that you have the right permissions and network access in place and can access the resources required for the rest of these exercises.</p>
+
+<p>In this first task you will walk through some of those base configurations that are needed to stand up a Microsoft Dev Box in Azure. This includes a Dev Center where all the projects will live. The projects where you can add the virtual machines configured specifically for that project, as well as the network these development virtual machines will be attached to. This ensures users can login with the Azure AD account as well as that they are able to access other resources on the network.</p>
+
+<h2 id="description">Description</h2>
+
+<p>Microsoft Dev Box requires the proper infrastructure and resources to be deployed in Azure before you can start deploying  machines for users. In this exercise, you’ll prep your Azure environment for deploying Dev Boxes.</p>
+
+<h2 id="success-criteria">Success Criteria</h2>
+
+<ul>
+  <li>Create a Dev Center</li>
+  <li>Create a Project</li>
+  <li>Setup the dev center so dev boxes are joined to Azure AD (Microsoft Entra)
+    <ul>
+      <li>Create a vNet (if needed) - use an existing vNet or create a new one for the network connection</li>
+      <li>Create a network connection and add it to the dev center</li>
+    </ul>
+  </li>
+</ul>
+
+<h2 id="learning-resources">Learning Resources</h2>
+
+<ul>
+  <li><a href="https://learn.microsoft.com/azure/dev-box/quickstart-configure-dev-box-service?tabs=AzureADJoin#prerequisites">Microsoft Dev Box Prerequisites</a></li>
+</ul>
+
+<h2 id="tips">Tips</h2>
+
+<ul>
+  <li><a href="https://learn.microsoft.com/en-us/azure/dev-box/quickstart-configure-dev-box-service?tabs=AzureADJoin#1-create-a-dev-center">Step-by-step to create a dev center and project</a></li>
+  <li><a href="https://learn.microsoft.com/en-us/azure/dev-box/quickstart-configure-dev-box-service?tabs=AzureADJoin#2-configure-a-network-connection">Step-by-step to create a Dev Box network and network connection</a></li>
+  <li><a href="https://learn.microsoft.com/en-us/azure/dev-box/quickstart-configure-dev-box-arm-template">If you want to use an ARM template, configure a Dev Box by using an ARM template</a></li>
+</ul>
+
+<h2 id="related-features-not-covered-in-this-lab">Related features not covered in this lab</h2>
+
+<ul>
+  <li><a href="https://learn.microsoft.com/azure/deployment-environments/how-to-configure-catalog">Template Catalogs for Azure Deployment Environments</a></li>
+  <li><a href="https://learn.microsoft.com/en-us/azure/deployment-environments/configure-environment-definition">Environment definitions for Dev Center Projects</a></li>
+</ul>
+
+  </body>
+</html>

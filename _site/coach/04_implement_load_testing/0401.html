@@ -1,0 +1,50 @@
+<h1 id="task-01---implement-load-testing">Task 01 - Implement load testing</h1>
+
+<p>Below is a sample load testing plan. Learners should have a plan with a similar overall feel, although some specific details may vary.</p>
+
+<ul>
+  <li>Define what services and the scope of your testing
+    <ul>
+      <li>We will be simulating an average day when a user hits our website during normal business hours 8 AM - 5 PM.  We will be testing all endpoints to ensure all features are tested.</li>
+    </ul>
+  </li>
+  <li>Environment Requirements
+    <ul>
+      <li>Because we are testing user workloads, we will need the following resources at the same level as production.
+        <ul>
+          <li>App Service</li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+  <li>Identify the load characteristics and scenario
+    <ul>
+      <li>Our current average daily load is 1000 users/hour.  We will mimic the average daily load by spinning up 30 concurrent threads, hitting all endpoints. Because there is a consistent daily load, we will mimic this with gradual load increasing linearly.</li>
+    </ul>
+  </li>
+  <li>Identify the test failure criteria
+    <ul>
+      <li>Our test will fail if we are unable to support 30 concurrent users, as we already know this is the current demand.</li>
+      <li>We will also consider this a failed test if we find performance below the expected threshold of 600ms per call on average or if more than 10% of calls fail, as this may impact customer satisfaction.</li>
+    </ul>
+  </li>
+  <li>Identify how you will be monitoring your application
+    <ul>
+      <li>We will be monitoring our applications with Application Insights to detect any errors and monitor performance.</li>
+    </ul>
+  </li>
+  <li>Identify potential bottlenecks or limitations in advance
+    <ul>
+      <li>Although we do not cache data, the fact that the application is using an in-memory database should mitigate any data transfer bottlenecks.</li>
+    </ul>
+  </li>
+  <li>Identify any assumptions or risks in your plan
+    <ul>
+      <li>We are assuming these are only casual end users and not other 3rd parties who could be trying to obtain information about our traffic.</li>
+      <li>We are using consumption-based model for Azure App Services.</li>
+      <li>The application does not make any database calls.</li>
+    </ul>
+  </li>
+</ul>
+
+<p>Reinforce the importance of using existing metrics, usage patterns, and data to inform the load testing plan on learners’ own applications.</p>

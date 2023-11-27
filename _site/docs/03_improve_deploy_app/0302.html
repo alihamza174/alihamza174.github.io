@@ -1,0 +1,60 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>2. Change the application</title>
+  </head>
+  <body>
+    <nav>
+  <a href="/">Home</a>
+  <a href="/docs">Docs</a>
+</nav>
+    <h1 id="task-02---change-the-application-15-minutes">Task 02 - Change the application (15 minutes)</h1>
+
+<h2 id="introduction">Introduction</h2>
+
+<p>We have a Dev Box configured, so now it is time to ensure that everything works as expected. We can do this by making a simple change to the demo application and ensuring that we are able to commit this code to GitHub from the Dev Box.</p>
+
+<h2 id="description">Description</h2>
+
+<p>Developers at Munson’s Pickles and Preserves like the Team Messaging System in general, but they consistently bring up issues with one aspect of the application: it limits messages to 200 characters or fewer. Developers have made a case that the app should support messages of up to 250 characters in length instead.</p>
+
+<p>In this task, you will modify the application to support 250 characters instead of 200. You will also follow a feature branching strategy and use a pull request to bring your change into the <code class="language-plaintext highlighter-rouge">main</code> branch. If you wish to complete this task using a Test-Driven Design approach, please read the <strong>Advanced Challenges (optional)</strong> section below before making any changes.</p>
+
+<ol>
+  <li>Create a new GitHub Issue indicating the desired outcome.</li>
+  <li>Create a new branch in GitHub for your changes.</li>
+  <li>Fetch changes on your Dev Box and check out the new branch you have created.</li>
+  <li>Make any necessary modifications to the .NET application to change the limit on message length from 200 to 250. Be sure to update any error messages or other indicators as well so you do not have incorrect error messages or display messages. You may also use this as an opportunity to demonstrate GitHub Copilot to a customer.</li>
+  <li>Commit the changes to the feature branch in your GitHub repository. Ensure that your commit message includes verbiage to the extent of “Resolves #x”, where ‘x’ is the issue number for the issue you created. This will allow you to auto-close the issue once your code makes it into the <code class="language-plaintext highlighter-rouge">main</code> branch via pull request.</li>
+  <li>Create a pull request from your feature branch into <code class="language-plaintext highlighter-rouge">main</code>. Add another learner on your team as a reviewer for this pull request. Your code reviewer should read through the changes, comment on any issues, and approve the review if the change looks good.</li>
+  <li>After your team member reviews and approves the pull request, complete the pull request to merge the changes from your feature branch into the <code class="language-plaintext highlighter-rouge">main</code> branch. Delete the feature branch upon completion.</li>
+</ol>
+
+<h2 id="success-criteria">Success Criteria</h2>
+
+<ul>
+  <li>You are able to run your web application on your Dev Box successfully after making changes.</li>
+  <li>You are able to insert a message of length 250.</li>
+  <li>You are not able to insert a message of length 251.</li>
+  <li>All of your changes are now in the <code class="language-plaintext highlighter-rouge">main</code> branch of your GitHub repository.</li>
+  <li>The issue you created for this ticket is now closed and the feature branch has been deleted.</li>
+</ul>
+
+<h2 id="learning-resources">Learning Resources</h2>
+
+<ul>
+  <li><a href="https://docs.github.com/en/get-started/quickstart/github-flow">GitHub flow</a></li>
+  <li><a href="https://docs.github.com/en/issues/tracking-your-work-with-issues/linking-a-pull-request-to-an-issue">Linking a pull request to an issue</a></li>
+  <li><a href="https://learn.microsoft.com/en-us/dotnet/core/testing/unit-testing-with-dotnet-test">Unit testing C# in .NET Core using dotnet test and xUnit</a></li>
+  <li><a href="https://andrewlock.net/creating-parameterised-tests-in-xunit-with-inlinedata-classdata-and-memberdata/">Creating parameterised tests in xUnit with InlineData, ClassData, and MemberData</a></li>
+</ul>
+
+<h2 id="advanced-challenges-optional">Advanced Challenges (optional)</h2>
+
+<p>Your code change did not affect any unit tests. In practice, this is a sign that we are missing at least one valid unit test case. As part of your code changes, introduce unit tests which test the insertion of a message of length 199, a message of length 200, a message of length 201, a message of length 249, a message of length 250, and a message of length 251.</p>
+
+<p>Use GitHub Copilot to assist in creating the appropriate unit tests.</p>
+
+  </body>
+</html>

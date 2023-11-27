@@ -1,0 +1,90 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>2. Setup an image</title>
+  </head>
+  <body>
+    <nav>
+  <a href="/">Home</a>
+  <a href="/docs">Docs</a>
+</nav>
+    <h1 id="task-02---setup-an-image-90-minutes">Task 02 - Setup an image (90 minutes)</h1>
+
+<ol>
+  <li>In the Azure Portal create a new Azure Compute Gallery
+<img src="../Media/AzureComputeGallery.png" alt="Azure Compute Gallery" /></li>
+  <li>Configure the following properties. On the Sharing Tab you can keep the defaults. Create the Gallery.
+![Compute Gallery Configuration]../Media/ComputerGalleryBasics.png)</li>
+  <li>Now creating a Windows 11 VM</li>
+  <li><img src="../Media/VirtualMachine.png" alt="Create a Virtual Machine" /></li>
+  <li>For the settings
+    <ul>
+      <li>Basics:
+        <ul>
+          <li>Same Resource Group you’ve been using</li>
+          <li>Virtual Machine name: DevMPPTeamMessagingImage</li>
+          <li>Availability options: No infrastructure redundancy required</li>
+          <li>Security type: Trusted launch virtual machines</li>
+          <li>Images: Windows 11 Enterprise, version 22H2 - x64 Gen2
+            <ul>
+              <li><strong>Note: Make sure you select enterprise and not pro. Pro is not supported for Dev Box.</strong></li>
+            </ul>
+          </li>
+          <li>Size: Standard_D4s_v5</li>
+          <li>Username: DevBoxAdmin</li>
+          <li>Password: something you’ll remember</li>
+          <li>Licensing: Confirm
+<img src="../Media/VMBasics.png" alt="Virtual Machine Basics" /></li>
+        </ul>
+      </li>
+      <li>Disks:
+        <ul>
+          <li>Do nothing</li>
+        </ul>
+      </li>
+      <li>Networking:
+        <ul>
+          <li>Make sure it’s connected to the network you created in the last task</li>
+          <li>Check “Delete public IP and NIC when a VM is deleted”:</li>
+          <li>Uncheck “Enable accelerated network”
+<img src="../Media/VMNetworking.png" alt="Virtual Machine Networking" /></li>
+        </ul>
+      </li>
+      <li>Management, Monitoring, Advanced
+        <ul>
+          <li>Do nothing and take the defaults</li>
+        </ul>
+      </li>
+      <li>Create the VM</li>
+    </ul>
+  </li>
+  <li>Configure the network to only allow RDP access form you IP address
+    <ul>
+      <li>Under the VM Network settings click RDP in the Network Security Group. Set Source to “My IP address” and select Save
+ <img src="../Media/VMNetworkRDP.png" alt="VM Network RDP" /></li>
+    </ul>
+  </li>
+  <li>RDP Into the box and download/install the software.
+    <ol>
+      <li>These are all pretty straight forward, just make sure they all get installed for all users</li>
+      <li>Before running sysprep, shut down the VM and take a snapshot. Once you perform a sysprep you can’t start the VM back up again without using this snapshot.</li>
+      <li>An error with Docker after the install is fine, just ignore it and do the sysprep</li>
+    </ol>
+  </li>
+  <li>After the Windows machine shuts down due to sysprep, navigate to your virtual machine in Azure.</li>
+  <li>Select Capture
+ <img src="../Media/CaptureVM.png" alt="Capture the VM Image" /></li>
+  <li>Select the Azure computer gallery you created in Task 1
+<img src="../Media/VMImageGallery.png" alt="Select VM Image Gallery" /></li>
+  <li>Create a new Target VM image definition
+<img src="../Media/VMImageDefinition.png" alt="New VM Image Definition" /></li>
+  <li>Set the Version number to 1.0.0</li>
+  <li>Set Default storage SKU to Premium SSD LRS</li>
+  <li>The configuration should look like this. Then create the image
+<img src="../Media/VMImageCreate.png" alt="VM Image Creation" />
+-<strong>Note</strong>: This step can take some time to complete. If it hasn’t completely after about 20 minute, students can proceed to Exercise 2 and use their own machines. They can check on that status periodically, and once it completes, move on to Task 3. It’s OK to use their own machine for Day 1 and use the Dev Box on day 2.</li>
+</ol>
+
+  </body>
+</html>

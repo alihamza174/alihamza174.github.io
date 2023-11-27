@@ -1,0 +1,118 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>3. Introduce infrastructure as code</title>
+  </head>
+  <body>
+    <nav>
+  <a href="/">Home</a>
+  <a href="/docs">Docs</a>
+</nav>
+    <h1 id="task-03---introduce-infrastructure-as-code-20-minutes">Task 03 - Introduce infrastructure as code (20 minutes)</h1>
+
+<h2 id="introduction">Introduction</h2>
+
+<p>Now that we have some code, we need an environment to deploy it to! The term Infrastructure as Code (IaC) refers to using code-based templates repeatedly and consistently to create the dev, test, and prod infrastructure environments. We can automate the deployment of Azure services we need with an Azure Resource Manager (ARM), Bicep, or other type of template, which we can invoke as part of a GitHub Actions workflow.</p>
+
+<p>Review the following articles:</p>
+
+<ul>
+  <li><a href="https://docs.microsoft.com/en-us/azure/azure-resource-manager/resource-group-overview">Azure Resource Manager overview</a></li>
+  <li><a href="https://docs.microsoft.com/en-us/azure/azure-resource-manager/how-to-create-template">Create Azure Resource Manager template</a></li>
+</ul>
+
+<h2 id="description">Description</h2>
+
+<p>In this task, you will deploy out new Azure infrastructure for the Munson’s Pickles and Preserves Team Messaging System. You will deploy this to three environments: <code class="language-plaintext highlighter-rouge">dev</code>, <code class="language-plaintext highlighter-rouge">test</code>, and <code class="language-plaintext highlighter-rouge">prod</code>. Each environment will have its own Web App, though for the sake of this proof of concept, all environments will share a single resource group, App Service Plan, Application Insights instance, and Azure Container Registry.</p>
+
+<p>We will use GitHub Actions to automate the deployment of our Azure infrastructure. For our application, we will deploy 3 environments: <code class="language-plaintext highlighter-rouge">dev</code>, <code class="language-plaintext highlighter-rouge">test</code> and <code class="language-plaintext highlighter-rouge">prod</code>. Each environment will have its own Web App. For the sake of this proof of concept, however, all of our environments will share a single Resource Group, App Service Plan, Application Insights instance, and Azure Container Registry.</p>
+
+<blockquote class="note">
+  <p>We have laid out the resources in a single resource group for this training for two reasons. The first reason is to facilitate ease of cleanup at the end, as you will only need to delete one resource group. The other reason is to reduce the cost of training, as you will create only one App Service Plan and one Application Insights instance. In a real scenario, you would likely create separate resources for each environment, either in separate resource groups on the same subscription or separate resource groups in different subscriptions.</p>
+</blockquote>
+
+<ol>
+  <li>Review the Bicep template. Notice how it includes the configuration settings for an App Service Plan, a Web App, Application Insights, and Azure Container Registry into your resource group.</li>
+  <li>Review the use of the <code class="language-plaintext highlighter-rouge">uniqueString</code> function. This helps create unique names for your resources. This function is not random, but is instead a hash function based on your resource group ID, which provides a consistent but likely unique 13-character string. This function is useful to avoid naming conflicts in Azure.</li>
+  <li>Review the <code class="language-plaintext highlighter-rouge">environment</code> and <code class="language-plaintext highlighter-rouge">location</code> parameters. These have default values but you are able to override them as well in order to create other resources in different environments.</li>
+  <li>Create a resource group. Then, create a service principal to log into Azure. The service principal should have Contributor access to the resource group you just created. You can create this service principal with the following steps:
+    <ul>
+      <li>Create an Application registration and service principal in Microsoft Entra ID, either through the Azure portal or az cli.
+        <ul>
+          <li>
+            <p>If using the command line use <code class="language-plaintext highlighter-rouge">az ad sp create-for-rbac</code> to create a JSON output containing client details, including the client ID and client secret. Copy that JSON output. If you are not using the command line, ensure that you can generate client details in a format like the following:</p>
+
+            <div class="language-json highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="p">{</span><span class="w">
+    </span><span class="nl">"clientId"</span><span class="p">:</span><span class="w"> </span><span class="s2">"{client_id}"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"clientSecret"</span><span class="p">:</span><span class="w"> </span><span class="s2">"{some string value}"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"subscriptionId"</span><span class="p">:</span><span class="w"> </span><span class="s2">"{subscription_id}"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"tenantId"</span><span class="p">:</span><span class="w"> </span><span class="s2">"{tenant_id}"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"activeDirectoryEndpointUrl"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://login.microsoftonline.com"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"resourceManagerEndpointUrl"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://management.azure.com/"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"activeDirectoryGraphResourceId"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://graph.windows.net/"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"sqlManagementEndpointUrl"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://management.core.windows.net:8443/"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"galleryEndpointUrl"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://gallery.azure.com/"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"managementEndpointUrl"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://management.core.windows.net/"</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre></div>            </div>
+          </li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+  <li>Create a GitHub repository-level secret to store the service principal’s credentials, calling it <code class="language-plaintext highlighter-rouge">AZURE_CREDENTIALS</code>. Create a second repository-level secret to store the name of the Azure resource group, calling this <code class="language-plaintext highlighter-rouge">AZURE_RG</code>. Create a third repository-level secret to store the name of the Azure subscription, calling it <code class="language-plaintext highlighter-rouge">AZURE_SUBSCRIPTION_ID</code>.</li>
+  <li>Create a new GitHub Actions workflow called <code class="language-plaintext highlighter-rouge">deploy.yml</code>. This workflow should run on a manual trigger–that is, <em>not</em> triggered by a push or pull request.</li>
+  <li>Configure the workflow to accomplish the following tasks:
+    <ol>
+      <li>Use a service principal to log into Azure using your secret and configuration variable values.</li>
+      <li>Use the “Deploy Azure Resource Manager (ARM) Template” action to call the Bicep template in your repo.</li>
+    </ol>
+
+    <blockquote class="note">
+      <p>The name is a little confusing here as this action supports both ARM and Bicep as the template file.  This is because Bicep is a transparent abstraction of ARM.  For more details check out <a href="https://learn.microsoft.com/en-us/azure/azure-resource-manager/bicep/overview?tabs=bicep">this article</a>.</p>
+    </blockquote>
+  </li>
+  <li>Manually run your workflow. When your workflow completes successfully, go to the Azure portal to see the <code class="language-plaintext highlighter-rouge">dev</code> environment.</li>
+  <li>Run the workflow a second time, this time overriding the environment parameter with <code class="language-plaintext highlighter-rouge">test</code> instead of <code class="language-plaintext highlighter-rouge">dev</code>. When your workflow completes successfully, go to the Azure portal to see the new <code class="language-plaintext highlighter-rouge">test</code> App Service.</li>
+  <li>Run the workflow a third time, this time overriding the environment parameter with <code class="language-plaintext highlighter-rouge">prod</code> instead of <code class="language-plaintext highlighter-rouge">dev</code>. When your workflow completes successfully, go to the Azure portal to see the new <code class="language-plaintext highlighter-rouge">prod</code> App Service.</li>
+  <li>Ensure that Application Insights is enabled for each of the three App Services.</li>
+</ol>
+
+<h2 id="success-criteria">Success Criteria</h2>
+
+<ul>
+  <li>Your <code class="language-plaintext highlighter-rouge">deploy.yaml</code> workflow completes without any errors and overrides the <code class="language-plaintext highlighter-rouge">environment</code> parameter when calling the Bicep template.</li>
+  <li>Your resource group contains 6 resources: 3 App Services (dev, test, prod), 1 Application Insights, 1 App Service plan and 1 Container registry.</li>
+</ul>
+
+<h2 id="learning-resources">Learning Resources</h2>
+
+<ul>
+  <li><a href="https://github.com/Azure/login">Azure Login GitHub Action</a></li>
+  <li><a href="https://docs.microsoft.com/en-us/azure/devops/learn/what-is-infrastructure-as-code">What is Infrastructure as Code?</a></li>
+  <li><a href="https://docs.github.com/en/actions/security-guides/encrypted-secrets">Secrets in GitHub Actions</a></li>
+  <li><a href="https://docs.github.com/en/actions/learn-github-actions/variables#creating-configuration-variables-for-a-repository">Configuration Variables in GitHub Actions</a></li>
+  <li><a href="https://docs.microsoft.com/en-us/azure/azure-resource-manager/templates/deploy-github-actions">Deploy Bicep and Azure Resource Manager templates by using GitHub Actions</a></li>
+  <li><a href="https://docs.microsoft.com/en-us/azure/azure-resource-manager/templates/deploy-cli#parameters">Overriding ARM template parameters</a></li>
+</ul>
+
+<p>If you are interested in learning more about Infrastructure as Code, there are multiple <a href="https://aka.ms/wth">What the Hacks</a> that cover it in greater depth:</p>
+
+<ul>
+  <li><a href="https://microsoft.github.io/WhatTheHack/045-InfraAsCode-Bicep/">Infrastructure As Code: Bicep</a></li>
+  <li><a href="https://microsoft.github.io/WhatTheHack/011-InfraAsCode-ARM-DSC/">Infrastructure As Code: ARM Templates &amp; PowerShell DSC</a></li>
+  <li><a href="https://microsoft.github.io/WhatTheHack/012-InfraAsCode-Terraform/Student/">Infrastructure As Code: Terraform</a></li>
+  <li><a href="https://microsoft.github.io/WhatTheHack/013-InfraAsCode-Ansible/Student/">Infrastructure As Code: Ansible</a></li>
+</ul>
+
+<h2 id="advanced-challenges-optional">Advanced Challenges (optional)</h2>
+
+<p>Instead of changing the environment variable for each environment that we want to create in <code class="language-plaintext highlighter-rouge">deploy.yml</code>, you can configure the workflow to prompt the user to enter the environment name before the workflow runs. This eliminates the need to hardcode the environment name.</p>
+
+<ul>
+  <li>Configure your workflow to collect the environment name as a <a href="https://docs.github.com/en/actions/using-workflows/workflow-syntax-for-github-actions#onworkflow_callinputs">workflow input</a> and use that value to override the environment parameter when calling the Bicep template.</li>
+</ul>
+
+  </body>
+</html>

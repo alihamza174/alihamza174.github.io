@@ -1,0 +1,14 @@
+<h1 id="task-03---introduce-infrastructure-as-code">Task 03 - Introduce infrastructure as code</h1>
+
+<ul>
+  <li>The following az cli commands will create an application registration and then service principal. This uses a sample app registration name of <code class="language-plaintext highlighter-rouge">TechExcelUser</code>.
+    <ul>
+      <li><code class="language-plaintext highlighter-rouge">az ad app create --display-name TechExcelUser</code>. Copy the “appId” output to use in the next command.</li>
+      <li><code class="language-plaintext highlighter-rouge">az ad sp create --id {appId}</code></li>
+      <li><code class="language-plaintext highlighter-rouge">az ad sp create-for-rbac --name "TechExcelUser" --role contributor --scopes /subscriptions/{subscription_id}/resourceGroups/{resource_group_name} --json-auth</code>. The output of this command should be the <code class="language-plaintext highlighter-rouge">AZURE_CREDENTIALS</code> secret.</li>
+    </ul>
+  </li>
+  <li>The solution for this task is a YAML file in <a href="../Solution/Exercise-03/Task-3/deploy.yml">the solutions folder</a>.</li>
+  <li>The solution for the advanced variant of this task is a separate YAML file in <a href="../Solution/Exercise-03/Task-3/deploy-advanced.yml">the solutions folder</a>.</li>
+  <li>To enable Application Insights via the Azure portal, navigate to an App Service. Then, choose Application Insights from the Settings menu on the left-hand side. Next, select the “Turn on Application Insights” button to enable Application Insights. Finally, select “Apply” and then “Yes” to complete the process. Repeat this for the two remaining environments.</li>
+</ul>

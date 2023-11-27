@@ -1,0 +1,79 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>3. Set up a GitHub Actions workflow</title>
+  </head>
+  <body>
+    <nav>
+  <a href="/">Home</a>
+  <a href="/docs">Docs</a>
+</nav>
+    <h1 id="task-03---set-up-a-github-actions-workflow-20-minutes">Task 03 - Set up a GitHub Actions workflow (20 minutes)</h1>
+
+<h2 id="introduction">Introduction</h2>
+
+<p>Automation is a critical part of an effective DevOps process, incorporating elements like CI/CD but also processes like IssueOps. GitHub Actions provides a platform for GitHub to respond to various event triggers to execute workflows.</p>
+
+<p>Workflows are broken down into jobs that contain the automation steps to complete these jobs. These steps could be a simple CLI command or a pre-defined piece of automation in the form of a GitHub Action from GitHub’s extensive Marketplace.</p>
+
+<p>Jobs can run on Linux, macOS, or Windows. They can run in the cloud on a hosted runner or run on your own machines through a self-hosted runner. We will use hosted runners for this training but your requirements after today may include the need for self-hosting or a mix of both.</p>
+
+<p>Jobs can run sequentially or in parallel. Sequential jobs provide the ability to define your workflow sequences. An example of this is a sequence that includes building an application, running tests against that application, and then deploying the application artifacts to a remote server for hosting. By contrast, parallel jobs allow the ability to scale out sections of your workflow. For example, you could build your application on x64 at the same time as ARM or test the application on Chrome at the same time as Firefox.</p>
+
+<p>There are common workflow patterns for CI/CD processes, but the flexibility of GitHub Actions allows us to respond to an extensive range of GitHub events. This enables many other possibilities, such as the ability to execute a workflow whenever anybody creates an issue in your project.</p>
+
+<h2 id="description">Description</h2>
+
+<p>The IT team at Munson’s Pickles and Preserves would like to see how GitHub Actions workflows operate and what is necessary to create one. The workflow you create will start with a single job triggered by manual event, but then you will expand upon it to include a second job and an additional event trigger.</p>
+
+<ol>
+  <li>Create a GitHub workflow in a <code class="language-plaintext highlighter-rouge">.github/workflows</code> directory and name it <code class="language-plaintext highlighter-rouge">first-workflow.yml</code>. Include a trigger to execute this workflow manually (that is, <em>not</em> triggered by an automated action such as a push into a branch or pull request).</li>
+  <li>Add a job called <code class="language-plaintext highlighter-rouge">job1</code> to the workflow. The job should include two steps. Each step will be a simple CLI command to echo out the phrases “Step 1 complete!” and “Step 2 complete!” respectively.</li>
+  <li>Manually trigger the workflow you created. Check the log file for the workflow run and ensure that your job succeeded, emitting the echo statements as expected.</li>
+  <li>
+    <p>Add a second job to this workflow and call it <code class="language-plaintext highlighter-rouge">job2</code>. In this job, add a single step. This step should call a GitHub Action from the GitHub Marketplace. Find the “Cowsays” action in the marketplace and configure this action to emit the text “Ready for prod–ship it!” in magenta font color.</p>
+
+    <blockquote class="note">
+      <p>When you run this job, the log output may print in some other color instead of magenta. GitHub logs are not required to honor font color specifications.</p>
+    </blockquote>
+  </li>
+  <li>Execute your workflow again, ensuring that both jobs run as expected and that the two jobs run in parallel.</li>
+  <li>Modify <code class="language-plaintext highlighter-rouge">first-workflow.yml</code> to ensure that <code class="language-plaintext highlighter-rouge">job2</code> does not run until <code class="language-plaintext highlighter-rouge">job1</code> completes.</li>
+  <li>Execute the workflow again to test the sequence.</li>
+  <li>Add an additional trigger to <code class="language-plaintext highlighter-rouge">first-workflow.yml</code> which fires when somebody creates an issue.</li>
+  <li>Create a new issue and ensure that the workflow ran as expected.</li>
+</ol>
+
+<h2 id="success-criteria">Success Criteria</h2>
+
+<ul>
+  <li>You can execute your first workflow from a manual trigger or upon somebody creating an issue.</li>
+  <li>You can see output from all the steps in the two jobs.</li>
+  <li>The two jobs now run sequentially, with <code class="language-plaintext highlighter-rouge">job2</code> running after <code class="language-plaintext highlighter-rouge">job1</code> completes.</li>
+  <li><code class="language-plaintext highlighter-rouge">job2</code> successfully runs the “Cowsays” GitHub Action from the marketplace.</li>
+</ul>
+
+<h2 id="learning-resources">Learning Resources</h2>
+
+<ul>
+  <li><a href="https://docs.github.com/en/enterprise-cloud@latest/actions/learn-github-actions/understanding-github-actions">Understanding GitHub Actions</a></li>
+  <li><a href="https://docs.github.com/en/enterprise-cloud@latest/actions/learn-github-actions/essential-features-of-github-actions">Essential features of GitHub Actions</a></li>
+  <li><a href="https://github.com/marketplace?type=actions">GitHub Actions Marketplace</a></li>
+  <li><a href="https://docs.github.com/en/actions/using-workflows/events-that-trigger-workflows#workflow_dispatch">Manually trigger a workflow</a></li>
+  <li><a href="https://docs.github.com/en/actions/using-workflows/events-that-trigger-workflows">Events that trigger workflows</a></li>
+  <li><a href="https://docs.github.com/en/enterprise-cloud@latest/actions/learn-github-actions/variables">GitHub Action Variables</a></li>
+  <li><a href="https://docs.github.com/en/enterprise-cloud@latest/actions/learn-github-actions/expressions">GitHub Actions Expressions</a></li>
+</ul>
+
+<h2 id="advanced-challenges-optional">Advanced Challenges (optional)</h2>
+
+<p>In the event that you have completed Exercise 02 before the alloted time, please try the following challenges.</p>
+
+<ol>
+  <li>In your workflow file, define an environment variable for your workflow or job. Pass the contents of the environment variable into one of your echo steps in <code class="language-plaintext highlighter-rouge">job1</code>.</li>
+  <li>In your workflow file, pass the value from an environment variable into your “Cowsays” action in <code class="language-plaintext highlighter-rouge">job2</code>.</li>
+</ol>
+
+  </body>
+</html>

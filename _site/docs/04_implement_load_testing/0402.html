@@ -1,0 +1,70 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>2. Run a load test from GitHub Actions</title>
+  </head>
+  <body>
+    <nav>
+  <a href="/">Home</a>
+  <a href="/docs">Docs</a>
+</nav>
+    <h1 id="task-02---run-a-load-test-from-github-actions-75-minutes">Task 02 - Run a load test from GitHub Actions (75 minutes)</h1>
+
+<h2 id="introduction">Introduction</h2>
+
+<p>In this task, you will create a load testing script in Apache JMeter which should hit each application endpoint. This script will implement the load testing strategy you created in the previous task. Your scripts should help you get a baseline for how the application can handle typical user loads.</p>
+
+<p>Azure Load Testing is based on Apache JMeter - a popular open source load testing tool. This means you can reuse existing JMeter scripts or create new scripts by using the JMeter GUI.</p>
+
+<p>To demonstrate this, you will then create a Load Testing service in Azure and use the load testing scripts you created to run baseline tests.</p>
+
+<p>Baselines help to determine the current efficiency state of your application and its supporting infrastructure. They can provide good insights for improvements and determine if the application is meeting business goals. Baselines can exist for an application in any state of maturity, so no matter when you establish the baseline, you can measure performance against that baseline during continued development. When code or infrastructure changes, you can actively measure the performance impact of that change.</p>
+
+<p>After creating a baseline, you will integrate Azure Load Testing into your CI/CD pipeline as part of a GitHub Action workflow.</p>
+
+<h2 id="description">Description</h2>
+
+<p>Now that you have demonstrated your load testing plan for the Team Messaging System to the development team at Munson’s Pickles and Preserves, it is time to put it into action.</p>
+
+<ol>
+  <li>Using the JMeter GUI, create a load testing script that targets each of the application endpoints.</li>
+  <li>Execute the load test using the JMeter GUI against your endpoints and use the Azure portal to confirm the App Service is getting the traffic.</li>
+  <li>Create an Azure Load Testing resource.</li>
+  <li>Create a load test in the Load Testing service that accepts the website URL as an environment variable and passes that value to your load testing script.</li>
+  <li>Run your load test multiple times using a typical user load and establish a performance baseline.</li>
+  <li>Review the test results, identify the bottlenecks (CPU, memory, resource limits), and compile a list of insights.</li>
+  <li>Discuss where you may be able to leverage the baseline data you have gathered.</li>
+  <li>Use the Azure Load Testing GitHub Action to execute your load test with a manual trigger.</li>
+  <li>Intentionally set the pass/fail rules in your test configuration to a value that would cause the test to fail during the workflow.</li>
+  <li>On load test failure, automatically create a GitHub Issue.</li>
+</ol>
+
+<h2 id="success-criteria">Success Criteria</h2>
+
+<ul>
+  <li>Verify that you have a load testing script in .jmx format that targets each application endpoint.</li>
+  <li>Verify that your load test works in JMeter and you are able to see the load in your sample application.</li>
+  <li>Show your load tests running in Azure Load Testing service, as well as your performance baseline.</li>
+  <li>Verify that you can run the same load test and change parameters to hit different environments.</li>
+  <li>Demonstrate that you can execute your load test on a manual GitHub Actions workflow trigger.</li>
+  <li>Demonstrate that, when the load test fails due to it not meeting a performance target, your workflow automatically creates a GitHub Issue.</li>
+</ul>
+
+<h2 id="learning-resources">Learning Resources</h2>
+
+<ul>
+  <li><a href="https://jmeter.apache.org/usermanual/get-started.html">Apache JMeter Getting Started</a> - This requires Java 8+ to be installed</li>
+  <li><a href="https://jmeter.apache.org/index.html">Apache JMeter Docs</a></li>
+  <li><a href="https://jmeter.apache.org/usermanual/get-started.html#template">Create Test Plan from Template</a></li>
+  <li><a href="https://jmeter.apache.org/usermanual/best-practices.html">JMeter best practices</a></li>
+  <li><a href="https://jmeter-plugins.org/">Custom Plugins for Apache JMeter</a></li>
+  <li><a href="https://docs.microsoft.com/en-us/azure/architecture/framework/scalability/performance-test#establish-baselines">Establish Baselines</a></li>
+  <li><a href="https://docs.microsoft.com/en-us/azure/load-testing/how-to-parameterize-load-tests">Create configurable load tests with secrets and environment variables</a></li>
+  <li><a href="https://docs.microsoft.com/en-us/azure/load-testing/">Load Testing documentation</a></li>
+  <li><a href="https://www.youtube.com/watch?v=voYj16cETAM">Video: JMeter Test Script Recorder</a></li>
+  <li><a href="https://stackoverflow.com/questions/53034969/jmeter-post-anti-forgery-token">JMeter + POST + anti-forgery token</a></li>
+</ul>
+
+  </body>
+</html>

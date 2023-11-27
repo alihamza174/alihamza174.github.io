@@ -1,0 +1,36 @@
+<h1 id="task-01---branching--policies-20-minutes">Task 01 - Branching &amp; Policies (20 minutes)</h1>
+
+<ol>
+  <li>Go to Settings, Branches, and select Add branch protection rule
+<img src="../Media/AddBranchProtectionRule.png" alt="Setup a security policy" /></li>
+  <li>For the branch name pattern use <code class="language-plaintext highlighter-rouge">main</code>. If you wanted this to apply to a certain name format you could also use a regex pattern.</li>
+  <li>Ensure that Require a pull request before merging is checked
+    <ul>
+      <li>Keep require approvals check and the number of approvals to 1</li>
+      <li>Select Require review from Code Owners
+ <img src="../Media/BranchProtectionRule.png" alt="Configure the branch protection rule" /></li>
+    </ul>
+  </li>
+  <li>Add the CODEOWNERS file to specify the code owners for the repo and applications
+ <img src="../Media/CodeOwnersFile.png" alt="Add the code owners file" /></li>
+  <li>Testing the branch protection rules is hard if it is your personal repo and you are the Owner as Owners can bypass the branch protection rule. One way to verify the rule is properly in place it to edit the file in the browser and then commit the change and select the main branch. If the rule is in place, you’ll get a warning about bypassing the rules and committing the change.
+ <img src="../Media/CommitToMain.png" alt="Committing Directly to main" /></li>
+  <li>If you select to create a new branch, the warning will be removed and you can propose the change.
+ <img src="../Media/NewBranch.png" alt="Creating a new branch" /></li>
+  <li>Once you’ve proposed the change in a new branch, you can create the pull request to merge the branch into main. Similar to committing to main, if you’re doing this on your own repo, their isn’t a review that happens since you can be your own approver. To test this, set the approver to another GitHub account or find someone to partner up with you so you test this out.
+ <img src="../Media/CreatePullRequest.png" alt="Create the pull request" />
+ The screen shot below shows what happens if you are your own approver. You’ll see there is nothing in the reviewers.
+ <img src="../Media/CreatePullRequest2.png" alt="Create the pull request" />
+ This screen demonstrate what happens when you set the code owner to someone else. That person will show up under the reviewers.
+    <ul>
+      <li>Crescent Moon: <em>username</em> will be requested when the pull request is marked ready for review</li>
+      <li>Shield: <em>username</em> is a code owner</li>
+      <li>Dot: Awaiting requested review from <em>username</em>
+ <img src="../Media/CreatePullRequestReview.png" alt="Pull Request Reviewer" /></li>
+    </ul>
+  </li>
+  <li>When you try to create the PR, you’ll have errors about waiting for the code owner review. Since you are an admin of the repo, you can bypass the owner review branch protection, but this is a permission only granted to the admin of the repo.
+ <img src="../Media/PullRequestPendingReview.png" alt="Pull request pending the code owner review" /></li>
+  <li>Once the pull request has been merged and closed, you can delete the branch
+ <img src="../Media/DeleteMergedBranch.png" alt="Delete the merged branch" /></li>
+</ol>

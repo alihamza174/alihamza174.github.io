@@ -1,0 +1,144 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>0102</title>
+  </head>
+  <body>
+    <nav>
+  <a href="/">Home</a>
+  <a href="/docs">Docs</a>
+</nav>
+    <h1 id="task-02---setup-an-image-90-minutes">Task 02 - Setup an image (90 minutes)</h1>
+
+<h2 id="description">Description</h2>
+
+<p>Typically, when a developer needs to have an environment configured for their development tasks, they need software deployed, specific versions of tools and source code, any other configurations for their development tasks. This can be a time-consuming process, particularly when onboarding a new developer or switching to a new development project.</p>
+
+<p>If developers are working on multiple projects, they may even have challenges with those different projects requiring different versions of the same software. In this task, you’ll setup an image to be used for Dev Box. This enables most of these things to be preconfigured so as soon as a user is onboarded or needs to work on a different project, an environment can be quickly spun up for them from an image.</p>
+
+<ol>
+  <li>Create a compute gallery &amp; add it to the Dev center</li>
+  <li>
+    <p>Create a custom image using Windows 11 Enterprise, version 22H2 - x64 Gen2</p>
+
+    <blockquote class="note">
+      <p>Make sure you select enterprise and not pro. Pro is not supported for Dev Box.</p>
+    </blockquote>
+  </li>
+  <li>Include the following software on the custom image. If you have any issues selecting and copying the link you can also right click the link and select “Copy Link”.
+    <ul>
+      <li>Docker (without WSL)
+        <ul>
+          <li><a href="https://docs.docker.com/desktop/install/windows-install/">https://docs.docker.com/desktop/install/windows-install/</a></li>
+        </ul>
+
+        <blockquote class="note">
+          <p>Make sure to UNCHECK to use WSL during installation. This will cause issue with docker</p>
+        </blockquote>
+      </li>
+      <li>Visual Studio Code (System Installer):
+        <ul>
+          <li><a href="https://code.visualstudio.com/Download">https://code.visualstudio.com/Download</a></li>
+          <li>Make sure this finishes before installing Git so you can set it as the default editor</li>
+        </ul>
+      </li>
+      <li>Java (for JMeter):
+        <ul>
+          <li><a href="https://www.java.com/en/download/">https://www.java.com/en/download/</a></li>
+        </ul>
+      </li>
+      <li>Apache JMeter:
+        <ul>
+          <li><a href="https://dlcdn.apache.org//jmeter/binaries/apache-jmeter-5.6.2.zip">https://dlcdn.apache.org//jmeter/binaries/apache-jmeter-5.6.2.zip</a></li>
+          <li>Extract the apache-jmeter-5.6.2 folder to C:\</li>
+        </ul>
+      </li>
+      <li>Azure Storage Explorer (Install for all users):
+        <ul>
+          <li><a href="https://azure.microsoft.com/products/storage/storage-explorer/">https://azure.microsoft.com/products/storage/storage-explorer/</a></li>
+        </ul>
+      </li>
+      <li>Git bash:
+        <ul>
+          <li><a href="https://git-scm.com/download/win">https://git-scm.com/download/win</a></li>
+          <li>64bit git for Windows Setup</li>
+          <li>You may want to set the default editor to VSCode, keep the defaults for everything else.</li>
+        </ul>
+      </li>
+      <li>.NET SDK 6.0 LTS:
+        <ul>
+          <li><a href="https://dotnet.microsoft.com/download/visual-studio-sdks">https://dotnet.microsoft.com/download/visual-studio-sdks</a></li>
+          <li>.NET 6.0 x64 Visual Studio 2022 SDK</li>
+        </ul>
+      </li>
+      <li>Firefox:
+        <ul>
+          <li><a href="https://www.mozilla.org/en-US/firefox/new/">https://www.mozilla.org/en-US/firefox/new/</a>.</li>
+          <li>Firefox is useful because it allows you to create a manual proxy rather than using Windows defaults, as Chrome and Edge require. This will be helpful in Exercise 4.</li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+  <li>
+    <p>Reboot after installing all of the software and ensure that Docker is running before performing a sysprep.</p>
+
+    <blockquote class="important">
+      <p>At this point in time, take a snapshot of the OS disk on your VM so you can make updates to it later if needed. Once you sysprep a VM you can’t boot it back up again to make changes.</p>
+    </blockquote>
+  </li>
+  <li>Perform sysprep. To do so:
+    <ul>
+      <li>Delete C:\Windows\Panther and empty the recycle bin</li>
+      <li>In the command prompt, CD to C:\Windows\System32\SysPrep and run <code class="language-plaintext highlighter-rouge">sysprep.exe /oobe /generalize /shutdown</code></li>
+    </ul>
+  </li>
+  <li>Create the new image
+    <ul>
+      <li>For the VM image definition, create a new one with the name “DevBoxProject” and leave everything else as default</li>
+      <li>VM version number can be 1.0.0</li>
+      <li>Default storage SKU: Premium SD LRS</li>
+      <li>Review + create –&gt; Create</li>
+    </ul>
+  </li>
+</ol>
+
+<blockquote class="important">
+  <p>It can take anywhere from 20 minutes to an hour to create the image. If it still hasn’t completed after 15 or 20 minutes. You can start on Exercise 2 using a different machine. Task 3 of exercise 1 depends on the completely of this image creating.  It is ok to use your own computer for Day 1 and use the Dev Box on day 2.</p>
+</blockquote>
+
+<h2 id="success-criteria">Success Criteria</h2>
+
+<ul>
+  <li>You have created a compute gallery and added it to the Dev center.</li>
+  <li>You have created a custom image with all relevant software installed.</li>
+</ul>
+
+<h2 id="learning-resources">Learning Resources</h2>
+
+<ul>
+  <li><a href="https://learn.microsoft.com/en-us/azure/virtual-machines/create-gallery?tabs=portal%2Cportaldirect%2Ccli2">Create an Azure Compute gallery</a></li>
+  <li><a href="https://learn.microsoft.com/azure/dev-box/quickstart-configure-dev-box-service?tabs=AzureADJoin#3-create-a-dev-box-definition">Create a Dev Box Definition</a></li>
+  <li><a href="https://learn.microsoft.com/azure/virtual-machines/generalize">Generalize a VM</a></li>
+  <li><a href="https://learn.microsoft.com/azure/virtual-machines/capture-image-portal">Create an image from a VM</a></li>
+</ul>
+
+<h2 id="tips">Tips</h2>
+
+<ul>
+  <li>For the image creation, use the VM Size: Standard D4s v3 (4 vCPUs, 16 GiB memory) with a Windows 10 or 11 Image</li>
+  <li>After running sysprep on a virtual machine in Azure, you can’t use it again, so you can delete the VM along with it’s associated resources (NIC, Disk, etc.)</li>
+  <li>For security, once you create the VM with RDP access, go into the networking settings and set the RDP access Source to be limited to your IP address</li>
+  <li>If you do need to make changes to your VM after you ran sysprep, you’ll need to restore from the snapshot
+    <ol>
+      <li>Create a new disk from the snapshot</li>
+      <li>Create a new VM from the new managed disk</li>
+      <li>Make your updates on the VM</li>
+      <li>Create a new snapshot</li>
+      <li>Run sysprep again.</li>
+    </ol>
+  </li>
+</ul>
+
+  </body>
+</html>

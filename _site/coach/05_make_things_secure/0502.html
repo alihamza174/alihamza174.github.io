@@ -1,0 +1,26 @@
+<h1 id="task-02---ensure-your-code-is-secure-20-minutes">Task 02 - Ensure your code is secure (20 minutes)</h1>
+
+<ol>
+  <li>Select settings in your repo, then “Code security and analysis”. Select “Enable” on “Dependabot alerts” and “Dependabot security updates”.
+ <img src="../Media/EnableDependabot.png" alt="Enabled Dependabot alerts and security updates" />
+ <strong>Note</strong> This will also automatically turn on Dependency graph</li>
+  <li>Navigate to for information about security policies. It also has a link to a sample security policy that should be used for this exercise - <a href="https://github.com/electron/electron/blob/main/SECURITY.md">https://github.com/electron/electron/blob/main/SECURITY.md</a></li>
+  <li>In your GitHub repot, select Security, Policy, and Start setup
+<img src="../Media/StartSecurityPolicySetup.png" alt="Start the security policy setup" /></li>
+  <li>Paste the security policy into the Markdown file (you can overwrite what is there now) and update it for the Munson’s Pickles and Preserves Teams Messaging System and the GitHub repot your code is in, then commit the changes to the main branch.
+<img src="../Media/CommitSecurityPolicy.png" alt="Commit the updated security policy" /></li>
+  <li>Next we need to enable CodeQL. Select Settings and then Code security and analysis.</li>
+  <li>Scroll down if needed and select Set up in Code scanning for CodeQL analysis.
+ <img src="../Media/CodeQLAnalysisSetup.png" alt="Setup CodeQL analysis" /></li>
+  <li>If you select “Default”, the code scan will immediately be run. For this exercise, select Advanced.
+ <img src="../Media/CodeQLAdvanced.png" alt="Select Default" /></li>
+  <li>By choosing the advanced option, you can see the YAML for the pipeline that actually performs the code check. We don’t need to make any changes here, but it’s something you should be familiar with. Any easy change to make in this file would be if you want to adjust the schedule of when the scan runs. After you’re reviewed the YAML, Commit the change to main.
+ <img src="../Media/CodeQLYAMLCommit.png" alt="Commit the CodeQL YAML" />
+ <img src="../Media/CodeQLCommitChange.png" alt="Commit the change" /></li>
+  <li>After you’ve committed the change, select Actions and you should see your CodeQL Scan workflow running.
+ <img src="../Media/CodeQLScanRunning.png" alt="CodeQL scan running" /></li>
+  <li>After about 5 minutes, you should see the workflow has completed.
+<img src="../Media/CodeQLWorkflowComplete.png" alt="Workflow complete" /></li>
+  <li>After it’s complete, go back to “Settings” and “Code security and analysis”. Then click the ellipsis (…) to “Set up”. You’ll see a couple of options there, “View last scan log, and “View Code Scanning alerts”. Click and those just to explore. You shouldn’t see much in either screen. The final option, “View CodeQL Workflow” will take you to the YAML file you created in step 9. <strong>Note:</strong> it will still say “Set up” since we chose the Advanced option instead of Basic.
+<img src="../Media/CodeQLViewResults.png" alt="View cod scanning results" /></li>
+</ol>

@@ -34,10 +34,10 @@ jobs:
           ruby-version: 2.7
       - name: Install Bundler
         run: gem install bundler --user-install
+      - name: Set Bundler path
+        run: echo "::add-path::$HOME/.gem/ruby/$(ruby -e 'puts RUBY_VERSION')/bin"
       - name: Install dependencies
-        run: |
-          export PATH="$HOME/.gem/ruby/$(ruby -e 'puts RUBY_VERSION')/bin:$PATH"
-          bundle install --path vendor/bundle
+        run: bundle install --path vendor/bundle
       - name: Build with Jekyll
         run: bundle exec jekyll build
       - name: Build with Jekyll

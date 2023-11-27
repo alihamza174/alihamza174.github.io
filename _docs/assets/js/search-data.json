@@ -1,0 +1,443 @@
+{"0": {
+    "doc": "1. Deploy the necessary prerequisites needed for a Microsoft Dev Box",
+    "title": "Task 01 - Deploy the necessary prerequisites required for a Microsoft Dev Box (20 minutes)",
+    "content": ". | Navigate to Azure and create a new Resource Group for the Lab | In the search box, find Microsoft Dev Box . | Select Dev centers and click to create a new one | Use a name like MPPDevCenter for the Dev center name | Once you’re in your Dev Center, Create a new project | Create a project for the Munson’s Pickles and Preserves Team Messaging System application | . | Leave Dev Box management with the defaults, if you wanted to set a limit on the number of dev boxes a user could create you can do that here. | . | Go back to the Azure Portal and your Resource Group and create a new Virtual network You can keep Security and IP addresses to the defaults and create the network | Create a new Network Connection in the resource group | Make sure it’s in your same resource group and the domain join type is set to Azure active directory join. In the network connection details connect it to the network you just created. | Once the network connection is created, navigate back to your Dev Center and under Networking add the network connection you just created. You can add it before the checks are finished running, they will continue to run once it’s been added. | . Now you’re ready to start creating a custom image to deploy your Dev Box. ",
+    "url": "/Coach/01_set_up_dev_env/0101.html#task-01---deploy-the-necessary-prerequisites-required-for-a-microsoft-dev-box-20-minutes",
+    
+    "relUrl": "/Coach/01_set_up_dev_env/0101.html#task-01---deploy-the-necessary-prerequisites-required-for-a-microsoft-dev-box-20-minutes"
+  },"1": {
+    "doc": "1. Deploy the necessary prerequisites needed for a Microsoft Dev Box",
+    "title": "1. Deploy the necessary prerequisites needed for a Microsoft Dev Box",
+    "content": " ",
+    "url": "/Coach/01_set_up_dev_env/0101.html",
+    
+    "relUrl": "/Coach/01_set_up_dev_env/0101.html"
+  },"2": {
+    "doc": "2. Setup an image",
+    "title": "Task 02 - Setup an image (90 minutes)",
+    "content": ". | In the Azure Portal create a new Azure Compute Gallery | Configure the following properties. On the Sharing Tab you can keep the defaults. Create the Gallery. ![Compute Gallery Configuration]../Media/ComputerGalleryBasics.png) | Now creating a Windows 11 VM | | For the settings . | Basics: . | Same Resource Group you’ve been using | Virtual Machine name: DevMPPTeamMessagingImage | Availability options: No infrastructure redundancy required | Security type: Trusted launch virtual machines | Images: Windows 11 Enterprise, version 22H2 - x64 Gen2 . | Note: Make sure you select enterprise and not pro. Pro is not supported for Dev Box. | . | Size: Standard_D4s_v5 | Username: DevBoxAdmin | Password: something you’ll remember | Licensing: Confirm | . | Disks: . | Do nothing | . | Networking: . | Make sure it’s connected to the network you created in the last task | Check “Delete public IP and NIC when a VM is deleted”: | Uncheck “Enable accelerated network” | . | Management, Monitoring, Advanced . | Do nothing and take the defaults | . | Create the VM | . | Configure the network to only allow RDP access form you IP address . | Under the VM Network settings click RDP in the Network Security Group. Set Source to “My IP address” and select Save | . | RDP Into the box and download/install the software. | These are all pretty straight forward, just make sure they all get installed for all users | Before running sysprep, shut down the VM and take a snapshot. Once you perform a sysprep you can’t start the VM back up again without using this snapshot. | An error with Docker after the install is fine, just ignore it and do the sysprep | . | After the Windows machine shuts down due to sysprep, navigate to your virtual machine in Azure. | Select Capture | Select the Azure computer gallery you created in Task 1 | Create a new Target VM image definition | Set the Version number to 1.0.0 | Set Default storage SKU to Premium SSD LRS | The configuration should look like this. Then create the image -Note: This step can take some time to complete. If it hasn’t completely after about 20 minute, students can proceed to Exercise 2 and use their own machines. They can check on that status periodically, and once it completes, move on to Task 3. It’s OK to use their own machine for Day 1 and use the Dev Box on day 2. | . ",
+    "url": "/Coach/01_set_up_dev_env/0102.html#task-02---setup-an-image-90-minutes",
+    
+    "relUrl": "/Coach/01_set_up_dev_env/0102.html#task-02---setup-an-image-90-minutes"
+  },"3": {
+    "doc": "2. Setup an image",
+    "title": "2. Setup an image",
+    "content": " ",
+    "url": "/Coach/01_set_up_dev_env/0102.html",
+    
+    "relUrl": "/Coach/01_set_up_dev_env/0102.html"
+  },"4": {
+    "doc": "3. Deploy a Microsoft Dev Box",
+    "title": "Task 03 - Deploy a Microsoft Dev Box (10 minutes)",
+    "content": " ",
+    "url": "/Coach/01_set_up_dev_env/0103.html#task-03---deploy-a-microsoft-dev-box-10-minutes",
+    
+    "relUrl": "/Coach/01_set_up_dev_env/0103.html#task-03---deploy-a-microsoft-dev-box-10-minutes"
+  },"5": {
+    "doc": "3. Deploy a Microsoft Dev Box",
+    "title": "Task 3 - Deploy a Microsoft Dev Box",
+    "content": ". | Navigate back to your Dev Center, go to Identity and turn on a system assigned Managed Identity | Once it’s been enabled, in the Dev Center and add the compute gallery that was created in Task 2 | Go to you Dev box definitions, and create a new definition. Use the image you created in Task 2. -Note: The verification of the definition can also take some time to complete. If it hasn’t completely after about 20 minute, students can proceed to continue on with exercise 2 and using their own machines. They can check on that status periodically, and once it completes, finish up Task 3. It’s OK to use another machine (there own or another VM) for Day 1 and use the Dev Box on day 2. | After the definition has been created and the image status verified, go to Projects and open up your MPPTeamMessagingSystem Project | Navigate to Manage dev box pools, and create a dev box pool | Configure the settings as seen below. Use your Dev Box Image you just created as well as the network connection you created in Task 1. You may also want to adjust the auto-stop time | Finally, for the Project, under Access control, assign yourself and any other users to be a “DevCenter Dev Box Users” | . Notes: At this point in time, Docker doesn’t appear to work if it was installed on the image and may need an uninstall/re-install . ",
+    "url": "/Coach/01_set_up_dev_env/0103.html#task-3---deploy-a-microsoft-dev-box",
+    
+    "relUrl": "/Coach/01_set_up_dev_env/0103.html#task-3---deploy-a-microsoft-dev-box"
+  },"6": {
+    "doc": "3. Deploy a Microsoft Dev Box",
+    "title": "3. Deploy a Microsoft Dev Box",
+    "content": " ",
+    "url": "/Coach/01_set_up_dev_env/0103.html",
+    
+    "relUrl": "/Coach/01_set_up_dev_env/0103.html"
+  },"7": {
+    "doc": "Exercise 01: Set up development environment",
+    "title": "Exercise 01 Solution - Set up development environment",
+    "content": " ",
+    "url": "/Coach/01_set_up_dev_env/01_set_up_development_environment.html#exercise-01-solution---set-up-development-environment",
+    
+    "relUrl": "/Coach/01_set_up_dev_env/01_set_up_development_environment.html#exercise-01-solution---set-up-development-environment"
+  },"8": {
+    "doc": "Exercise 01: Set up development environment",
+    "title": "Lab Scenario",
+    "content": "Munson’s Pickles and Preserves has a large number of developers on their team, working on a variety of projects. One of those projects is the Team Messaging System. A challenge that Munson’s Pickles and Preserves has with development is getting developers machines configured properly in a timely manner when they need to work on these projects. Developers occasionally will also be working on two projects simultaneously that require different configurations or various versions for the same software packages, making it challenging to keep their development computer consistent when working on the two projects. In the past, MPP has also had issues with one developer’s computer being configured slightly differently that another developer’s so the code they were developing behaved differently in different circumstances. Within Microsoft Azure, Microsoft has created Microsoft Dev Box as a solution for addressing this issue. It allows an organization to create a virtual desktop environment geared specifically at developers. This allows organizations to ensure that developers are working from machines configured the same way with the same version of software deployed to them. In these next few tasks, you’ll configure a Microsoft Dev Box environment. ",
+    "url": "/Coach/01_set_up_dev_env/01_set_up_development_environment.html#lab-scenario",
+    
+    "relUrl": "/Coach/01_set_up_dev_env/01_set_up_development_environment.html#lab-scenario"
+  },"9": {
+    "doc": "Exercise 01: Set up development environment",
+    "title": "Objectives",
+    "content": "After you complete this lab, you will be able to: . | Set up an Azure environment to use Microsoft Dev Box | Create a virtual machine image you can use for subsequent exercises | Deploy a Microsoft Dev Box using the virtual machine image you have created | . ",
+    "url": "/Coach/01_set_up_dev_env/01_set_up_development_environment.html#objectives",
+    
+    "relUrl": "/Coach/01_set_up_dev_env/01_set_up_development_environment.html#objectives"
+  },"10": {
+    "doc": "Exercise 01: Set up development environment",
+    "title": "Lab Duration",
+    "content": ". | Estimated Time: 120 minutes | . ",
+    "url": "/Coach/01_set_up_dev_env/01_set_up_development_environment.html#lab-duration",
+    
+    "relUrl": "/Coach/01_set_up_dev_env/01_set_up_development_environment.html#lab-duration"
+  },"11": {
+    "doc": "Exercise 01: Set up development environment",
+    "title": "Exercise 01: Set up development environment",
+    "content": " ",
+    "url": "/Coach/01_set_up_dev_env/01_set_up_development_environment.html",
+    
+    "relUrl": "/Coach/01_set_up_dev_env/01_set_up_development_environment.html"
+  },"12": {
+    "doc": "1. Set up a GitHub repository",
+    "title": "Task 01 - Set up a GitHub repository",
+    "content": ". | Some learners create their first repository via GitHub Desktop. Make sure learners understand how a distributed source control such as Git differs from a centralized source control system such as Team Foundation Version Control (TFVC) or Subversion (SVN). | To clone a repository via command line, run git clone $URL in the directory into which you wish to copy the repository. In order to get the value for URL, perform the following steps: . | Navigate to your repository in GitHub. | Select the green button labeled “&lt;&gt; Code”. | In the Clone section of the Local tab, select the copy button to get the URL. | . | Add the training files into the root of this new directory. | In the command line, the command git add --all will mark for tracking all of the files you just copied to the folder. | In order to commit changes, type in a command such as git commit -am \"My first commit\". Note that the commit message can be whatever you wish it to be. | The final step is to push this code to the remote GitHub repository. To do this, execute the command git push -u. If this is the first time you are pushing to a particular GitHub repository, you might see a warning message. | . ",
+    "url": "/Coach/02_start_working_github/0201.html#task-01---set-up-a-github-repository",
+    
+    "relUrl": "/Coach/02_start_working_github/0201.html#task-01---set-up-a-github-repository"
+  },"13": {
+    "doc": "1. Set up a GitHub repository",
+    "title": "1. Set up a GitHub repository",
+    "content": " ",
+    "url": "/Coach/02_start_working_github/0201.html",
+    
+    "relUrl": "/Coach/02_start_working_github/0201.html"
+  },"14": {
+    "doc": "2. Track your work",
+    "title": "Task 02 - Track your work",
+    "content": ". | Make sure students are aware of the difference between the new “Project (Beta)” and traditional Project boards. | Learners may only assign tickets to other team members if those members have accepted invitations to be collaborators on the repository. | The following steps will allow a learner to add one or more collaborators: . | In your repository, select “Settings” from the options menu. | In the Access menu on the left-hand side, choose the “Collaborators” option. Any learners with two-factor authentication enabled for their account may be prompted for additional authentication. | Select the “Add people” option from the Manage access section. | A dialog box will appear. Enter the e-mail address or username of any team members you wish to add. | Team members will need to accept invitations before this process is complete. | . | The following steps will allow a learner to create an automated Kanban board: . | In your repository, select “Projects” from the options menu. | Select the drop-down arrow in the “Link a project” button and select “New Project” from the menu. Then select the “New project” button. | Select “Team backlog” in the project templates. | Select “Create” to generate the project board. | . | The following steps will allow a learner to create and work with GitHub Issues: . | In your project board, select the “Add Items” button. | Create the draft issues as specified in the task. | Convert draft issues to issues. Make sure you select the repository for each one. | New issues, if linked properly, should show up in the “New” column. Once you set the issue to a status of Closed, it should move to the “Done” column in the project board. If you are viewing the issues from the Kanban project board, you will be able to drag issues across columns. | . | . ",
+    "url": "/Coach/02_start_working_github/0202.html#task-02---track-your-work",
+    
+    "relUrl": "/Coach/02_start_working_github/0202.html#task-02---track-your-work"
+  },"15": {
+    "doc": "2. Track your work",
+    "title": "2. Track your work",
+    "content": " ",
+    "url": "/Coach/02_start_working_github/0202.html",
+    
+    "relUrl": "/Coach/02_start_working_github/0202.html"
+  },"16": {
+    "doc": "3. Set up a GitHub Actions workflow",
+    "title": "Task 03 - Set up a GitHub Actions workflow",
+    "content": ". | The solution for this task is a YAML file in the solutions folder. | . Each GitHub Actions workflow has a certain structure to it, following the GitHub Actions workflow syntax. The following is an annotated breakdown of this structure. # The name of the job is what will display on the GitHub repository in the Actions tab. name: First Workflow # The 'on' section tells GitHub under what conditions we want to run this workflow. # https://docs.github.com/en/actions/using-workflows/events-that-trigger-workflows # Common scenarios include: # workflow-dispatch (manual execution) # issues # push # pull_request # schedule on: workflow_dispatch: issues: types: [opened] # This section covers the work to perform. # We include one or more jobs in this section. jobs: # Each individual job will include details like execution order, # pre-requisite jobs, and execution platform. job1: # We can run jobs on GitHub hosted VM runners in Windows, Ubuntu, and Mac OS. # We can also run jobs on self-hosted hardware. runs-on: ubuntu-latest # Each job contains one or more steps. A step needs to have at least a name and a command. steps: - name: Step one # The 'run' command executes a shell or command script. Because this is Ubuntu, the # default run command will be /bin/bash run: echo \"Log from step one\" # This section does not appear in the solution file but demonstrates how to set # custom variables that will be available in the run script. env: VARIABLE_NAME: value - name: Step two run: echo \"Log from step two\" job2: # Job 2 will only run after job 1 completes. # Removing this 'needs' section would make the jobs run simultaneously. needs: job1 runs-on: ubuntu-latest steps: - name: Cowsays # The 'uses' command executes a remote GitHub action. # A command like mscoutermarsh/cowsays-action means you can # find this code at https://github.com/mscoutermarsh/cowsays-action uses: mscoutermarsh/cowsays-action@master # The 'with' block includes parameters that the workflow will pass # to this action. Parameters are all in key-value format. with: text: 'Ready for prod--ship it!' color: 'magenta' . ",
+    "url": "/Coach/02_start_working_github/0203.html#task-03---set-up-a-github-actions-workflow",
+    
+    "relUrl": "/Coach/02_start_working_github/0203.html#task-03---set-up-a-github-actions-workflow"
+  },"17": {
+    "doc": "3. Set up a GitHub Actions workflow",
+    "title": "3. Set up a GitHub Actions workflow",
+    "content": " ",
+    "url": "/Coach/02_start_working_github/0203.html",
+    
+    "relUrl": "/Coach/02_start_working_github/0203.html"
+  },"18": {
+    "doc": "Exercise 02: Start working in GitHub",
+    "title": "Exercise 02 Solution - Start working in GitHub",
+    "content": " ",
+    "url": "/Coach/02_start_working_github/02_start_working_in_github.html#exercise-02-solution---start-working-in-github",
+    
+    "relUrl": "/Coach/02_start_working_github/02_start_working_in_github.html#exercise-02-solution---start-working-in-github"
+  },"19": {
+    "doc": "Exercise 02: Start working in GitHub",
+    "title": "Lab Scenario",
+    "content": "Source control is a “must-have” for development projects today, and in this exercise, we will put together a GitHub repository that we will use for the rest of the training. But GitHub is about more than source control repositories. In this exercise, we will also cover GitHub project boards, which allow for collaboration between team members. We will also create a GitHub Actions workflow, which we can use to deploy code resources to remote destinations. ",
+    "url": "/Coach/02_start_working_github/02_start_working_in_github.html#lab-scenario",
+    
+    "relUrl": "/Coach/02_start_working_github/02_start_working_in_github.html#lab-scenario"
+  },"20": {
+    "doc": "Exercise 02: Start working in GitHub",
+    "title": "Objectives",
+    "content": "After you complete this lab, you will be able to: . | Clone an existing GitHub repository for your own use | Add team members to your GitHub repository | Build out a Kanban project board, including assigning issues to team members | Create a GitHub Actions workflow | . ",
+    "url": "/Coach/02_start_working_github/02_start_working_in_github.html#objectives",
+    
+    "relUrl": "/Coach/02_start_working_github/02_start_working_in_github.html#objectives"
+  },"21": {
+    "doc": "Exercise 02: Start working in GitHub",
+    "title": "Lab Duration",
+    "content": ". | Estimated Time: 45 minutes | . ",
+    "url": "/Coach/02_start_working_github/02_start_working_in_github.html#lab-duration",
+    
+    "relUrl": "/Coach/02_start_working_github/02_start_working_in_github.html#lab-duration"
+  },"22": {
+    "doc": "Exercise 02: Start working in GitHub",
+    "title": "Exercise 02: Start working in GitHub",
+    "content": " ",
+    "url": "/Coach/02_start_working_github/02_start_working_in_github.html",
+    
+    "relUrl": "/Coach/02_start_working_github/02_start_working_in_github.html"
+  },"23": {
+    "doc": "1. Configure Microsoft Copilot on your Dev Box",
+    "title": "Task 01 - Configure Microsoft Copilot on your Dev Box",
+    "content": ". | Microsoft employees have a specific process to access GitHub Copilot with their accounts. They should navigate to the following link to sign up. Learners who have already signed up should simply need to sign in using the correct account. | The GitHub Copilot extension is available in the Visual Studio Code extensions store. | In order to open the Copilot suggestions window, strike Ctrl+Shift+P in Windows or Linux, and Cmd+Shift+P on Mac to open the navigation menu. Then, enter text until you can select &gt; GitHub Copilot: Open Completions Panel. | GitHub Copilot works on highlighted text, so learners should enter a comment in a .cs file, highlight the comment, and review results. | . ",
+    "url": "/Coach/03_improve_deploy_app/0301.html#task-01---configure-microsoft-copilot-on-your-dev-box",
+    
+    "relUrl": "/Coach/03_improve_deploy_app/0301.html#task-01---configure-microsoft-copilot-on-your-dev-box"
+  },"24": {
+    "doc": "1. Configure Microsoft Copilot on your Dev Box",
+    "title": "1. Configure Microsoft Copilot on your Dev Box",
+    "content": " ",
+    "url": "/Coach/03_improve_deploy_app/0301.html",
+    
+    "relUrl": "/Coach/03_improve_deploy_app/0301.html"
+  },"25": {
+    "doc": "2. Change the application",
+    "title": "Task 02 - Change the application",
+    "content": ". | To create a new GitHub Issue, select “Issues” from the GitHub options menu and then select the “New issue” button. Enter an appropriate title and comment and then choose “Submit new issue” to create it. | To create a new branch in GitHub, select “&lt;&gt; Code” from the GitHub options menu. Then, choose the “main” drop-down menu below the GitHub repository title and select “View all branches” to navigate to the branch list. Select the green “New branch” button and then enter your new branch name and select “Create new branch” to complete the process. | On the Dev Box, run git fetch from the Git bash shell to fetch the latest changes. Then, run git checkout {new branch name} to make that the working branch. | The only necessary app modification is in Application\\src\\RazorPagesTestSample\\Data\\Message.cs and involves changing line 12. | To commit the change to the repository, add the changes to the working space with a command like git add .. Then, run a command such as git commit -m \"Resolves #6\", assuming that 6 is the relevant issue number. Run git push to push the changes from the remote branch to GitHub. | To create a pull request in GitHub, select “Pull requests” from the GitHub options menu. Then, select the “New pull request” option. The base branch should be “main” and the compare branch should be the new branch they’ve created. Then, select the green “Create pull request” button. On the pull request form, learners may add a reviewer by selecting the gear icon in the “Reviewers” section and then selecting a user from the drop-down list or typing in a username. After filling in pull request details, select the “Create pull request” button to create the pull request and alert the reviewer. Note that the GitHub website may prompt learners to create a pull request on the main page or on the Pull requests page, and they may choose this option as a shortcut to save a couple of steps. | To review a pull request, a team member should open the pull request, either directly through the link in the e-mail GitHub sends or by navigating to the appropriate repository and choosing the pull request from the “Pull requests” menu. The learner should navigate to the “Files changed” tab and review any changes, ensuring that line 12 Message.cs now supports 250 characters instead of 200. There may also be one or more unit test updates to review. If the review is successful, the reviewer may choose the green “Review changes” button on the right-hand side, choose the “Approve” radio button, and then select “Submit review” to complete the task. | . A separate team member must review the pull request, not the learner who owns the repository. | Once the team member has completed the pull request, the learner may open the pull request and select the green button to merge changes and complete the pull request. The learner may also select the checkbox to delete the feature branch. Alternatively, the learner may return to the branches list from the “&lt;&gt; Code” menu option and delete the branch manually. | . ",
+    "url": "/Coach/03_improve_deploy_app/0302.html#task-02---change-the-application",
+    
+    "relUrl": "/Coach/03_improve_deploy_app/0302.html#task-02---change-the-application"
+  },"26": {
+    "doc": "2. Change the application",
+    "title": "2. Change the application",
+    "content": " ",
+    "url": "/Coach/03_improve_deploy_app/0302.html",
+    
+    "relUrl": "/Coach/03_improve_deploy_app/0302.html"
+  },"27": {
+    "doc": "3. Introduce infrastructure as code",
+    "title": "Task 03 - Introduce infrastructure as code",
+    "content": ". | The following az cli commands will create an application registration and then service principal. This uses a sample app registration name of TechExcelUser. | az ad app create --display-name TechExcelUser. Copy the “appId” output to use in the next command. | az ad sp create --id {appId} | az ad sp create-for-rbac --name \"TechExcelUser\" --role contributor --scopes /subscriptions/{subscription_id}/resourceGroups/{resource_group_name} --json-auth. The output of this command should be the AZURE_CREDENTIALS secret. | . | The solution for this task is a YAML file in the solutions folder. | The solution for the advanced variant of this task is a separate YAML file in the solutions folder. | To enable Application Insights via the Azure portal, navigate to an App Service. Then, choose Application Insights from the Settings menu on the left-hand side. Next, select the “Turn on Application Insights” button to enable Application Insights. Finally, select “Apply” and then “Yes” to complete the process. Repeat this for the two remaining environments. | . ",
+    "url": "/Coach/03_improve_deploy_app/0303.html#task-03---introduce-infrastructure-as-code",
+    
+    "relUrl": "/Coach/03_improve_deploy_app/0303.html#task-03---introduce-infrastructure-as-code"
+  },"28": {
+    "doc": "3. Introduce infrastructure as code",
+    "title": "3. Introduce infrastructure as code",
+    "content": " ",
+    "url": "/Coach/03_improve_deploy_app/0303.html",
+    
+    "relUrl": "/Coach/03_improve_deploy_app/0303.html"
+  },"29": {
+    "doc": "4. Build, Push, and Deploy Changes",
+    "title": "Task 04 - Build, Push, and Deploy Changes",
+    "content": ". | The solution for this task is a YAML file in the solutions folder. To make the solution easier to understand, there are several versions of the solution file. Each version builds upon the prior, so the final version covers all parts of the solution. | The first version of the solution file covers steps 1-5. | The second version of the solution file adds in steps 6-12. | The third version of the solution file adds in steps 13-15. | The fourth version of the solution file adds in the advanced challenge. | . | . The deployment YAML files will not run on their own because they include sections which require developer input, such as {your_prefix} and {your_registry_name}. Filling these in with appropriate values is necessary to get the .yml files in the appropriate condition to run. The images command in each webapps-deploy call has a hard-coded value for the image location of techboost/dotnetcoreapp and expect you to hard-code the ACR location. This is because the images command will not accept repository secrets or variables defined in the workflow like the steps in the dockerBuildPush job do. ",
+    "url": "/Coach/03_improve_deploy_app/0304.html#task-04---build-push-and-deploy-changes",
+    
+    "relUrl": "/Coach/03_improve_deploy_app/0304.html#task-04---build-push-and-deploy-changes"
+  },"30": {
+    "doc": "4. Build, Push, and Deploy Changes",
+    "title": "4. Build, Push, and Deploy Changes",
+    "content": " ",
+    "url": "/Coach/03_improve_deploy_app/0304.html",
+    
+    "relUrl": "/Coach/03_improve_deploy_app/0304.html"
+  },"31": {
+    "doc": "Exercise 03: Improve and deploy your application",
+    "title": "Exercise 03 Solution - Improve and deploy your application",
+    "content": " ",
+    "url": "/Coach/03_improve_deploy_app/03_improve_and_deploy_your_application.html#exercise-03-solution---improve-and-deploy-your-application",
+    
+    "relUrl": "/Coach/03_improve_deploy_app/03_improve_and_deploy_your_application.html#exercise-03-solution---improve-and-deploy-your-application"
+  },"32": {
+    "doc": "Exercise 03: Improve and deploy your application",
+    "title": "Lab Scenario",
+    "content": "In the prior exercise, you worked with key GitHub components, such as repositories, project boards, and GitHub Actions workflows. In this exercise, you will build upon that prior work by showing how to perform a code modification using the GitFlow method. You will build upon your prior GitHub Actions workflows efforts by creating a new workflow to deploy Azure resources using a Bicep script. You will also build out a Continuous Integration and Continuous Delivery (CI/CD) process, automatically building and deploying changes whenever you check application code changes into specific GitHub branches. Along the way, you will also have an opportunity to use GitHub Copilot to assist with application development changes, showing the staff at Munson’s Pickles and Preserves how they can take advantage of GitHub Copilot in their own day-to-day work. ",
+    "url": "/Coach/03_improve_deploy_app/03_improve_and_deploy_your_application.html#lab-scenario",
+    
+    "relUrl": "/Coach/03_improve_deploy_app/03_improve_and_deploy_your_application.html#lab-scenario"
+  },"33": {
+    "doc": "Exercise 03: Improve and deploy your application",
+    "title": "Objectives",
+    "content": "After you complete this lab, you will be able to: . | Install and use the GitHub Copilot extension for Visual Studio Code | Modify a .NET application by following the GitFlow workflow | Deploy Azure resources using a Bicep script in a GitHub Actions workflow | Deploy containerized .NET applications as part of a build process | Implement Continuous Integration (CI) and Continuous Delivery (CD) with GitHub Actions workflows | . ",
+    "url": "/Coach/03_improve_deploy_app/03_improve_and_deploy_your_application.html#objectives",
+    
+    "relUrl": "/Coach/03_improve_deploy_app/03_improve_and_deploy_your_application.html#objectives"
+  },"34": {
+    "doc": "Exercise 03: Improve and deploy your application",
+    "title": "Lab Duration",
+    "content": ". | Estimated Time: 90 minutes | . ",
+    "url": "/Coach/03_improve_deploy_app/03_improve_and_deploy_your_application.html#lab-duration",
+    
+    "relUrl": "/Coach/03_improve_deploy_app/03_improve_and_deploy_your_application.html#lab-duration"
+  },"35": {
+    "doc": "Exercise 03: Improve and deploy your application",
+    "title": "Exercise 03: Improve and deploy your application",
+    "content": " ",
+    "url": "/Coach/03_improve_deploy_app/03_improve_and_deploy_your_application.html",
+    
+    "relUrl": "/Coach/03_improve_deploy_app/03_improve_and_deploy_your_application.html"
+  },"36": {
+    "doc": "1. Configure Microsoft Copilot on your Dev Box",
+    "title": "Task 01 - Implement load testing",
+    "content": "Below is a sample load testing plan. Learners should have a plan with a similar overall feel, although some specific details may vary. | Define what services and the scope of your testing . | We will be simulating an average day when a user hits our website during normal business hours 8 AM - 5 PM. We will be testing all endpoints to ensure all features are tested. | . | Environment Requirements . | Because we are testing user workloads, we will need the following resources at the same level as production. | App Service | . | . | Identify the load characteristics and scenario . | Our current average daily load is 1000 users/hour. We will mimic the average daily load by spinning up 30 concurrent threads, hitting all endpoints. Because there is a consistent daily load, we will mimic this with gradual load increasing linearly. | . | Identify the test failure criteria . | Our test will fail if we are unable to support 30 concurrent users, as we already know this is the current demand. | We will also consider this a failed test if we find performance below the expected threshold of 600ms per call on average or if more than 10% of calls fail, as this may impact customer satisfaction. | . | Identify how you will be monitoring your application . | We will be monitoring our applications with Application Insights to detect any errors and monitor performance. | . | Identify potential bottlenecks or limitations in advance . | Although we do not cache data, the fact that the application is using an in-memory database should mitigate any data transfer bottlenecks. | . | Identify any assumptions or risks in your plan . | We are assuming these are only casual end users and not other 3rd parties who could be trying to obtain information about our traffic. | We are using consumption-based model for Azure App Services. | The application does not make any database calls. | . | . Reinforce the importance of using existing metrics, usage patterns, and data to inform the load testing plan on learners’ own applications. ",
+    "url": "/Coach/04_implement_load_testing/0401.html#task-01---implement-load-testing",
+    
+    "relUrl": "/Coach/04_implement_load_testing/0401.html#task-01---implement-load-testing"
+  },"37": {
+    "doc": "1. Configure Microsoft Copilot on your Dev Box",
+    "title": "1. Configure Microsoft Copilot on your Dev Box",
+    "content": " ",
+    "url": "/Coach/04_implement_load_testing/0401.html",
+    
+    "relUrl": "/Coach/04_implement_load_testing/0401.html"
+  },"38": {
+    "doc": "2. Run a load test from GitHub Actions",
+    "title": "Task 02 - Run a load test from GitHub Actions",
+    "content": ". | A sample JMeter script is in the solutions folder. This script covers steps 1 and 2. | Before creating or running the script, create an environment variable called webapp on the Dev Box. Its value should be the URL for your site, in the format {yourprefix}-dev.azurewebsites.net with no https:// or trailing slashes. The following command line operation provides an example of how to create the environment variable: . setx webapp {yourprefix}-dev.azurewebsites.net . | The JMeter test plan includes the following components. Create them in the following order: . | Thread Group to perform testing (right-click on the Test Plan and select Add -&gt; Threads to add the Thread Group). The thread group should include 30 threads and 30 loops. | HTTP Request Defaults (right-click on the Thread Group and choose Add -&gt; Config Element). Set the protocol to https and the server name or IP to your deployed website. The included script sets the server name to a variable called ${site}, which uses the environment variable on the PC called webapp. | Recording Controller (Add -&gt; Logic Controller) | . | HTTP(S) Test Script recorder (Add -&gt; Non-Test Elements) . | On the test script recorder, the default port is 8888. | . | View Results in Table (Add -&gt; Listener). This allows you to view test results in a table and get a quick idea of how the website is performing during a test. | View Results Tree (Add -&gt; Listener). This allows you to view individual test results and diagnose potential issues such as 400 Bad Request. | . | The following steps allow you to perform a test recording. | Start the recorder by selecting the Start button on the HTTP(S) Test Script Recorder element. The first time you do this, JMeter will generate a temporary root certificate in C:\\apache-jmeter-5.6.2\\bin\\ (or wherever you installed JMeter). Stop the recording by selecting the Stop button. | Although you can use any browser for testing, the Firefox browser is recommended for this because you can set a manual proxy and do not need to create a Windows-wide proxy like you would for Chrome or Edge. You can set a proxy in Firefox by navigating to the options menu and then choosing Settings. Then, search for “proxy” in the settings search bar and select the Settings button for network settings. When running the test script, use a manual proxy configured to localhost on port 8888, and use it for HTTP as well as HTTPS. After setting the proxy, search for “certificate” in the settings search bar and then select the View Certificates button. From there, navigate to Authorities and choose the Import button. Inside C:\\apache-jmeter-5.6.2\\bin\\ (or wherever you installed JMeter), select the ApacheJMeterTemporaryRootCA.crt certificate and import it into Firefox. | After enabling the proxy and importing the certificate, you should be able to return to JMeter and restart the test recording. | During the recording, you should capture activities like viewing the page, adding a message, deleting a message, and analyzing messages. | . | After stopping a test recording, you will have a series of test actions. You will need to capture the request verification token from the first call in order to ensure that you have a proper CSRF token for all subsequent calls. | Right-click on the first recorded message in the Recording Controller element and select Add -&gt; Post Processors -&gt; CSS Selector Extractor. | In the CSS Selector Extractor, set the following attributes: . | Name of created variable = token | CSS Selector expression = input[name=__RequestVerificationToken] | Attribute = value | . | For each subsequent call, replace the Value of the “__RequestVerificationToken” parameter with ${token}. You will only see this parameter on POST requests, not GET requests. | . | . | The following instructions cover steps 3-7. | Create Azure Load Testing resource . | Search for the Azure Load Testing resource on the top search bar and select the resource. | On the top left hand corner select “Create” | Select the Resource Group that was created by the sample app or create your own. The resources must be in the same location. | Enter a unique name for the resource. | Ensure the location matches the location that your application is deployed to. | Select “Review + create” | Review your configurations and then select “Create” | . | Create Load Test . | Go into your new resource. You may see a warning on the top depending on your current access describing the access levels required. If so, add yourself as one of the roles such as “Load Testing Owner” or “Load Testing Contributor” as you will not be able to proceed otherwise. | Select “Create” | Fill out the name of the test and a description of the test. | Go to the “Test Plan” tab and select the JMeter script you have locally and then select “Upload” | Under the “Parameters” tab, enter “webapp” for the name of the environment variable, followed by the URL for your sample app in the “Value” section without https://. | Under the “Monitoring” tab, select “Add/Modify” and select the App Service for the sample app followed by “Apply” in order to monitor the app during testing. | Select “Review + create” | Review the settings and select “Create” | . | Run the load test . | In your Azure Load Test service, select “Tests” from the left hand side | Select the test that you created from the list | At the top of the screen select “Run” | A summary page should appear. Add that this run is the baseline in the description. Select “Run” | . | Set Pass/Fail Criteria . | Go back to your load test and select “Configure” followed by “Test” | Go to the “Test Criteria” Tab. | Enter in your test criteria such as failure rate under x % | . | . | The following high-level notes cover steps 8-10. In addition, a GitHub Actions workflow YAML file and an Azure Load Test configuration file are available in the solutions folder. | The file LoadTest.yml should go into .github/workflows. The files LoadTestConfig.yaml and LoadTestScript.jmx should go into the root of the repository. The file load_test_report.md should go into a new folder called .github/ISSUE_TEMPLATE. Make sure to update load_test_report.md to set the assignee to your username. | This is a sample action that will run a load test. The default action will either create or run the existing load test. However, GitHub Actions will automatically lower-case the value of the “TestName” parameter inside LoadTestConfig.yaml. Because the UI allows upper or lowercase letters, this can lead to duplicate tests existing in the Azure Load Test workspace. | Learners can use the baseline from their first run in challenge 3 to determine pass/fail criteria. | . | . ",
+    "url": "/Coach/04_implement_load_testing/0402.html#task-02---run-a-load-test-from-github-actions",
+    
+    "relUrl": "/Coach/04_implement_load_testing/0402.html#task-02---run-a-load-test-from-github-actions"
+  },"39": {
+    "doc": "2. Run a load test from GitHub Actions",
+    "title": "2. Run a load test from GitHub Actions",
+    "content": " ",
+    "url": "/Coach/04_implement_load_testing/0402.html",
+    
+    "relUrl": "/Coach/04_implement_load_testing/0402.html"
+  },"40": {
+    "doc": "3. Identifying bottlenecks, stress tests, and resilience testing",
+    "title": "Task 03 - Identifying bottlenecks, stress tests, and resilience testing",
+    "content": ". | The following high-level notes cover step 1. | For a primer on identifying bottlenecks using Azure Load Testing, this article covers the process. | Because there is no database associated with this application, identifying areas of slowdown will require code analysis. | Learners should notice that there are two operations which consistently lag behind everything else in terms of performance: initial loading of messages and posting a new message. In both cases, the root cause is a thread sleep loop. After removing these “speed loops,” learners should notice a drastic performance improvement when performing those operations. | . | The following high-level notes cover steps 2-4. There is also a sample JMeter script in the solution directory. | The following high-level notes cover steps 5-8. | Chaos Studio does not offer a GitHub Action at this time, so learners will not be able to integrate this into their CI/CD pipelines. | Azure Chaos studio only supports a limited number of services, such as VMs, AKS, App Services, Cosmos DB, and networking. Because our sample app only contains App Services, we will use App Service faults. | Prior to creating a chaos experiment, learners will want to scale out the App Service Plan to multiple instances, such as 3. | Create Azure Chaos Studio/Experiment . | Register Chaos Studio Provider . | Go to your subscription | On the left-hand side, select “Resource provider” | In the list of providers, search for “Microsoft.Chaos” | Click on the provider and select “Register” | . | Go to Azure Chaos Studio | Navigate to the Targets menu on the left-hand side and then select the App Service you will test. From there, select “Enable Targets” then “Enable service-direct targets” to complete enablement. | On the left-hand side menu for Chaos Studio, select the “Experiments” option. | Select “+ Create” and then choose “New experiment” from the dropdown. | Fill in your subscription, resource group, location, and name for this experiment. Keep track of the experiment name as a managed user will be created for you. | Go to the experiment designer on the next tab. Change the name of the step or branch if you wish. | Select “Add Action” and then “Add Fault” to create a new fault. | Select “Stop App Service” as the Fault. You can choose the duration but the minimum duration is 5 minutes and that should be enough. From the target resources tab, choose the App Service you wish to test and then select “Add” to complete the addition. | Save your experiment by selecting “Review + create” and then choosing the “Create” option. | . | Update App Service Permissions . | In the appropriate App Service, select “Access control (IAM)” from the left-hand menu. | Select “Add” followed by “Add Role Assignment” | Select the Contributor role, then select the “Members” tab. Choose the “+ Select members” link. | Search the name of the experiment from the earlier step and then click “Select”. | Review and assign the permissions which will grant the role to the experiment. | . | Run load test + experiment . | Run the load test first, then while the load test is running kick off the chaos experiment. You should notice that the application returns a 403 error and the web app is stopped. | . | . | . ",
+    "url": "/Coach/04_implement_load_testing/0403.html#task-03---identifying-bottlenecks-stress-tests-and-resilience-testing",
+    
+    "relUrl": "/Coach/04_implement_load_testing/0403.html#task-03---identifying-bottlenecks-stress-tests-and-resilience-testing"
+  },"41": {
+    "doc": "3. Identifying bottlenecks, stress tests, and resilience testing",
+    "title": "3. Identifying bottlenecks, stress tests, and resilience testing",
+    "content": " ",
+    "url": "/Coach/04_implement_load_testing/0403.html",
+    
+    "relUrl": "/Coach/04_implement_load_testing/0403.html"
+  },"42": {
+    "doc": "Exercise 04: Implement load testing and secure practices",
+    "title": "Exercise 04 Solution - Implement load testing and secure practices",
+    "content": " ",
+    "url": "/Coach/04_implement_load_testing/04_implement_load_testing_and_secure_practices.html#exercise-04-solution---implement-load-testing-and-secure-practices",
+    
+    "relUrl": "/Coach/04_implement_load_testing/04_implement_load_testing_and_secure_practices.html#exercise-04-solution---implement-load-testing-and-secure-practices"
+  },"43": {
+    "doc": "Exercise 04: Implement load testing and secure practices",
+    "title": "Lab Scenario",
+    "content": "Load testing is a critical part of quality control for an application. In this exercise, you will create a load testing strategy based on information you will receive from Munson’s Pickles and Preserves. Then, you will create a load test using a popular load testing solution: Apache JMeter. After creating a load test plan in JMeter, you will then import it into an Azure Load Test and create a GitHub Actions workflow to execute this Azure Load Test on demand. Finally, you will create two additional types of test in Azure: stress tests and chaos tests. ",
+    "url": "/Coach/04_implement_load_testing/04_implement_load_testing_and_secure_practices.html#lab-scenario",
+    
+    "relUrl": "/Coach/04_implement_load_testing/04_implement_load_testing_and_secure_practices.html#lab-scenario"
+  },"44": {
+    "doc": "Exercise 04: Implement load testing and secure practices",
+    "title": "Objectives",
+    "content": "After you complete this lab, you will be able to: . | Create a load test strategy based on service utilization patterns at a customer | Create a load test plan in Apache JMeter | Deploy and execute an Apache JMeter load test plan in the Azure Load Test service | Execute Azure Load Tests as part of GitHub Actions workflows | Stress test a .NET application running on Azure App Services | Chaos test a .NET application running on Azure App Services | . ",
+    "url": "/Coach/04_implement_load_testing/04_implement_load_testing_and_secure_practices.html#objectives",
+    
+    "relUrl": "/Coach/04_implement_load_testing/04_implement_load_testing_and_secure_practices.html#objectives"
+  },"45": {
+    "doc": "Exercise 04: Implement load testing and secure practices",
+    "title": "Lab Duration",
+    "content": ". | Estimated Time: 120 minutes | . ",
+    "url": "/Coach/04_implement_load_testing/04_implement_load_testing_and_secure_practices.html#lab-duration",
+    
+    "relUrl": "/Coach/04_implement_load_testing/04_implement_load_testing_and_secure_practices.html#lab-duration"
+  },"46": {
+    "doc": "Exercise 04: Implement load testing and secure practices",
+    "title": "Exercise 04: Implement load testing and secure practices",
+    "content": " ",
+    "url": "/Coach/04_implement_load_testing/04_implement_load_testing_and_secure_practices.html",
+    
+    "relUrl": "/Coach/04_implement_load_testing/04_implement_load_testing_and_secure_practices.html"
+  },"47": {
+    "doc": "1. Configure Microsoft Copilot on your Dev Box",
+    "title": "Task 01 - Branching &amp; Policies (20 minutes)",
+    "content": ". | Go to Settings, Branches, and select Add branch protection rule | For the branch name pattern use main. If you wanted this to apply to a certain name format you could also use a regex pattern. | Ensure that Require a pull request before merging is checked . | Keep require approvals check and the number of approvals to 1 | Select Require review from Code Owners | . | Add the CODEOWNERS file to specify the code owners for the repo and applications | Testing the branch protection rules is hard if it is your personal repo and you are the Owner as Owners can bypass the branch protection rule. One way to verify the rule is properly in place it to edit the file in the browser and then commit the change and select the main branch. If the rule is in place, you’ll get a warning about bypassing the rules and committing the change. | If you select to create a new branch, the warning will be removed and you can propose the change. | Once you’ve proposed the change in a new branch, you can create the pull request to merge the branch into main. Similar to committing to main, if you’re doing this on your own repo, their isn’t a review that happens since you can be your own approver. To test this, set the approver to another GitHub account or find someone to partner up with you so you test this out. The screen shot below shows what happens if you are your own approver. You’ll see there is nothing in the reviewers. This screen demonstrate what happens when you set the code owner to someone else. That person will show up under the reviewers. | Crescent Moon: username will be requested when the pull request is marked ready for review | Shield: username is a code owner | Dot: Awaiting requested review from username | . | When you try to create the PR, you’ll have errors about waiting for the code owner review. Since you are an admin of the repo, you can bypass the owner review branch protection, but this is a permission only granted to the admin of the repo. | Once the pull request has been merged and closed, you can delete the branch | . ",
+    "url": "/Coach/05_make_things_secure/0501.html#task-01---branching--policies-20-minutes",
+    
+    "relUrl": "/Coach/05_make_things_secure/0501.html#task-01---branching--policies-20-minutes"
+  },"48": {
+    "doc": "1. Configure Microsoft Copilot on your Dev Box",
+    "title": "1. Configure Microsoft Copilot on your Dev Box",
+    "content": " ",
+    "url": "/Coach/05_make_things_secure/0501.html",
+    
+    "relUrl": "/Coach/05_make_things_secure/0501.html"
+  },"49": {
+    "doc": "2. Ensure your code is secure",
+    "title": "Task 02 - Ensure your code is secure (20 minutes)",
+    "content": ". | Select settings in your repo, then “Code security and analysis”. Select “Enable” on “Dependabot alerts” and “Dependabot security updates”. Note This will also automatically turn on Dependency graph | Navigate to for information about security policies. It also has a link to a sample security policy that should be used for this exercise - https://github.com/electron/electron/blob/main/SECURITY.md | In your GitHub repot, select Security, Policy, and Start setup | Paste the security policy into the Markdown file (you can overwrite what is there now) and update it for the Munson’s Pickles and Preserves Teams Messaging System and the GitHub repot your code is in, then commit the changes to the main branch. | Next we need to enable CodeQL. Select Settings and then Code security and analysis. | Scroll down if needed and select Set up in Code scanning for CodeQL analysis. | If you select “Default”, the code scan will immediately be run. For this exercise, select Advanced. | By choosing the advanced option, you can see the YAML for the pipeline that actually performs the code check. We don’t need to make any changes here, but it’s something you should be familiar with. Any easy change to make in this file would be if you want to adjust the schedule of when the scan runs. After you’re reviewed the YAML, Commit the change to main. | After you’ve committed the change, select Actions and you should see your CodeQL Scan workflow running. | After about 5 minutes, you should see the workflow has completed. | After it’s complete, go back to “Settings” and “Code security and analysis”. Then click the ellipsis (…) to “Set up”. You’ll see a couple of options there, “View last scan log, and “View Code Scanning alerts”. Click and those just to explore. You shouldn’t see much in either screen. The final option, “View CodeQL Workflow” will take you to the YAML file you created in step 9. Note: it will still say “Set up” since we chose the Advanced option instead of Basic. | . ",
+    "url": "/Coach/05_make_things_secure/0502.html#task-02---ensure-your-code-is-secure-20-minutes",
+    
+    "relUrl": "/Coach/05_make_things_secure/0502.html#task-02---ensure-your-code-is-secure-20-minutes"
+  },"50": {
+    "doc": "2. Ensure your code is secure",
+    "title": "2. Ensure your code is secure",
+    "content": " ",
+    "url": "/Coach/05_make_things_secure/0502.html",
+    
+    "relUrl": "/Coach/05_make_things_secure/0502.html"
+  },"51": {
+    "doc": "3. Monitoring with Application Insights",
+    "title": "Task 03 - Monitoring with Application Insights (20 minutes)",
+    "content": ". | The App Insights Instrumentation key property is defined here under the appServiceApp resource | The App Insights resource is deployed here in the .bicep file | Go to Application Insights and select “Application Dashboard”. | Select “Edit” to explore what kinds of changes and updates you can make to the default dashboard | After making a few changes, name your new custom dashboard and save it. | Your new custom dashboard is now selected and is the new default dashboard for App Services. | Setup a Classic Test for your production site (or any other site) | This can be repeated for Dev and Test as well. | After a few minutes you’ll start seeing data coming in. | To see what happens when an app in unavailable, you can turn of one of your apps. | If you want alerts based on the site availability, select the ellipsis by the test and select “Open rules (Alerts) page”. | There will be a default alert created for failed applications. You can also select “+ Create” if you want add additional rules. | If you want to explore creating additional alerts, feel free. But nothing else needs to be created. | . ",
+    "url": "/Coach/05_make_things_secure/0503.html#task-03---monitoring-with-application-insights-20-minutes",
+    
+    "relUrl": "/Coach/05_make_things_secure/0503.html#task-03---monitoring-with-application-insights-20-minutes"
+  },"52": {
+    "doc": "3. Monitoring with Application Insights",
+    "title": "3. Monitoring with Application Insights",
+    "content": " ",
+    "url": "/Coach/05_make_things_secure/0503.html",
+    
+    "relUrl": "/Coach/05_make_things_secure/0503.html"
+  },"53": {
+    "doc": "Exercise 05: Make things secure",
+    "title": "Exercise 05 Solution - Make things secure",
+    "content": " ",
+    "url": "/Coach/05_make_things_secure/05_make_things_secure.html#exercise-05-solution---make-things-secure",
+    
+    "relUrl": "/Coach/05_make_things_secure/05_make_things_secure.html#exercise-05-solution---make-things-secure"
+  },"54": {
+    "doc": "Exercise 05: Make things secure",
+    "title": "Lab Scenario",
+    "content": "Repository security is something development teams may overlook. In this exercise, you will make use of several capabilities GitHub has to secure existing repositories. You will protect important branches, preventing users from checking directly into branches like main, instead requiring developers create feature branches and build pull requests that team members can review before code check-in. You will create a security policy for the repository, providing appropriate contact information in the event that someone finds a security vulnerability in repository code. You will also enable Depandabot alerts and show how to run code scanning workflows using CodeQL. Finally, you will create an outside-in availability test in Application Insights to check whether applications are running as expected. ",
+    "url": "/Coach/05_make_things_secure/05_make_things_secure.html#lab-scenario",
+    
+    "relUrl": "/Coach/05_make_things_secure/05_make_things_secure.html#lab-scenario"
+  },"55": {
+    "doc": "Exercise 05: Make things secure",
+    "title": "Objectives",
+    "content": "After you complete this lab, you will be able to: . | Protect important branches in GitHub repositories | Create a security policy for a GitHub repository | Enable Depandabot alerts on a GitHub repository | Create outside-in availability testing via Application Insights | . ",
+    "url": "/Coach/05_make_things_secure/05_make_things_secure.html#objectives",
+    
+    "relUrl": "/Coach/05_make_things_secure/05_make_things_secure.html#objectives"
+  },"56": {
+    "doc": "Exercise 05: Make things secure",
+    "title": "Lab Duration",
+    "content": ". | Estimated Time: 60 minutes | . ",
+    "url": "/Coach/05_make_things_secure/05_make_things_secure.html#lab-duration",
+    
+    "relUrl": "/Coach/05_make_things_secure/05_make_things_secure.html#lab-duration"
+  },"57": {
+    "doc": "Exercise 05: Make things secure",
+    "title": "Exercise 05: Make things secure",
+    "content": " ",
+    "url": "/Coach/05_make_things_secure/05_make_things_secure.html",
+    
+    "relUrl": "/Coach/05_make_things_secure/05_make_things_secure.html"
+  },"58": {
+    "doc": "Introduction",
+    "title": "TechExcel: Implementing DevOps practices to accelerate developer productivity",
+    "content": "This lab teaches you how to make use of a variety of GitHub features for code management, project management, and Continuous Integration and Continuous Delivery (CI/CD) via GitHub Actions workflows. In addition, you will learn how to create load tests using Apache JMeter and automate them using the Azure Load Test service and GitHub Actions workflows. Finally, you will learn about mechanisms available to secure a GitHub repository. ",
+    "url": "/#techexcel-implementing-devops-practices-to-accelerate-developer-productivity",
+    
+    "relUrl": "/#techexcel-implementing-devops-practices-to-accelerate-developer-productivity"
+  },"59": {
+    "doc": "Introduction",
+    "title": "Exercises",
+    "content": "This lab has exercises on: . | Set up the development environment | Start working in GitHub | Improve and deploy your application | Implement load testing and secure practices | Make things secure | . The lab is available as GitHub pages here . ",
+    "url": "/#exercises",
+    
+    "relUrl": "/#exercises"
+  },"60": {
+    "doc": "Introduction",
+    "title": "Prerequisites",
+    "content": "For running this lab you will need: . | An AAD tenant where you are a global admin. and an Azure subscription in that same tenant. | M365 E5 licenses (or a trial for these licenses configured) in that same tenant. | . MCAPS non-prod subscriptions are the most convenient way for you to meet all these prerequites, and the lab activities assume that you have configured an external subscription via https://aka.ms/MCAPSNewAzureSub. ",
+    "url": "/#prerequisites",
+    
+    "relUrl": "/#prerequisites"
+  },"61": {
+    "doc": "Introduction",
+    "title": "Introduction",
+    "content": " ",
+    "url": "/",
+    
+    "relUrl": "/"
+  },"62": {
+    "doc": "Load test failure!",
+    "title": "Load test failure!",
+    "content": "A load test failure has occurred. Please access the Azure Load Test portal to learn more about this latest run. ",
+    "url": "/Coach/Solution/Exercise-04/Task-2/load_test_report.html",
+    
+    "relUrl": "/Coach/Solution/Exercise-04/Task-2/load_test_report.html"
+  }
+}

@@ -1,8 +1,8 @@
 ---
-name: 'Exercise 01: Set up development environment'
-layout: docs
-# nav_order: 2
-# has_children: true
+title: 'Exercise 01: Set up development environment'
+layout: default
+nav_order: 2
+has_children: true
 ---
 
 # Exercise 01 - Set up development environment
